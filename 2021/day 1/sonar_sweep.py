@@ -62,15 +62,8 @@ def depth_increases_count(numbers_int: List[int]) -> int:
 def depth_increases_count2(numbers_int: List[int]) -> int:
     return sum([(n2-n1)>0 for n1, n2 in zip(numbers_int, numbers_int[1:])])
 
-def depth_increases_count3(numbers_int: List[int]) -> int:
-    l1 = iter(numbers_int)
-    l2 = iter(numbers_int[1:])
-    while True:
-        yield next(l2), next(l1)
-
-
 result = to_ints()
-res = depth_increases_count3(result)
+res = depth_increases_count2(result)
 print(res)
 
 """
