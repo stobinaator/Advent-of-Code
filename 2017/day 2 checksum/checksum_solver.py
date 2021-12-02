@@ -33,7 +33,7 @@ def read_sequence() -> List[str]:
         data = [item.replace('\t', ' ').replace('\n', '') for item in data]
     return data
     
-def compute_checksums(data_list: List[str]) -> int:
+def compute_checksums(data_list: list) -> int:
     checksum = 0
     for line in data_list:
         split_line = line.split(' ')
@@ -76,7 +76,7 @@ In the third row, the result is 2.
 In this example, the sum of the results would be 4 + 3 + 2 = 9.
 
 What is the sum of each row's result in your puzzle input?
-
+351
 '''
 
 def compute_checksums2(numbers: list) -> int:

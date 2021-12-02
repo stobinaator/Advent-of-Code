@@ -1,4 +1,12 @@
-# these are solutions for each day of 2017's Advent of Code
+# 2017's Advent of Code
 Each day's folder holds an input file with test-data, my solution and Joel Grus' solution.</br>
+D1: Both, D2: Both, D3: blocked </br>
 
-# waiting for 2021's Advent of Code
+# 2018's Advent of Code
+D1: Both </br>
+
+# 2019's Advent of Code
+D1: Both </br>
+
+# 2021's Advent of Code
+D1: Both, D2: Both </br>
