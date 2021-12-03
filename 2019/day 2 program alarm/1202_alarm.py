@@ -131,4 +131,4 @@ def brute_force_it(numbers: List[int]) -> List[int]:
                 return 100 * result[1] + result[2]
 
 numbers = to_int()
-print(brute_force_it(numbers))
+#print(brute_force_it(numbers))
