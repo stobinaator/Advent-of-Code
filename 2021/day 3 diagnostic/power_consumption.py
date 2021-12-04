@@ -34,6 +34,7 @@ Use the binary numbers in your diagnostic report to calculate the gamma rate and
 4160394
 """
 import os
+import copy
 from typing import List, Tuple
 from collections import Counter, defaultdict
 from itertools import zip_longest, islice
@@ -110,7 +111,7 @@ Use the binary numbers in your diagnostic report to calculate the oxygen generat
 
 def calc_oxyg_rating(bins: List) -> Tuple[str, int]:
     bin_len = len(bins[0])
-    bins_copy = bins.copy()
+    bins_copy = copy.deepcopy(bins)
     
     for i in range(bin_len):
         nrs_in_pos_x = [x[i] for x in bins_copy]
@@ -119,7 +120,6 @@ def calc_oxyg_rating(bins: List) -> Tuple[str, int]:
         
         a = list()
         dict_count = Counter(nrs_in_pos_x)
-        print(dict_count)
         [a.append(lis) for lis in dict_count.values()]
         if a[0] == a[1]:
             [nrs_in_pos_x.remove(n) for n in nrs_in_pos_x[:] if n == "0"]
@@ -136,7 +136,7 @@ def calc_oxyg_rating(bins: List) -> Tuple[str, int]:
             
 def calc_co2_rating(bins: List) -> Tuple[str, int]:
     bin_len = len(bins[0])
-    bins_copy = bins.copy()
+    bins_copy = copy.deepcopy(bins)
     
     for i in range(bin_len):
         nrs_in_pos_x = [x[i] for x in bins_copy]
@@ -168,27 +168,6 @@ _, ox_rate = calc_oxyg_rating(bins)
 _, co2_rate = calc_co2_rating(bins)
 res = calc_lifesupport_rate(ox_rate, co2_rate)
 print(res)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

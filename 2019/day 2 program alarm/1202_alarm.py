@@ -49,6 +49,7 @@ Once you have a working computer, the first step is to restore the gravity assis
 """
 
 import os
+import copy
 from typing import List
 from itertools import zip_longest
 
@@ -68,12 +69,6 @@ def grouper(n, iterable, fillvalue=None):
     args = [iter(iterable)] * n
     return zip_longest(fillvalue=fillvalue, *args)
 
-"""
-def get_fours(numbers: List[int]):
-    for n in numbers:
-        print(n)
-        print()
-"""
 
 def get_fours(numbers: List[int]) -> List[int]:
     for a,b,c,d in grouper(4, numbers):
@@ -94,7 +89,6 @@ def get_fours(numbers: List[int]) -> List[int]:
 
 
 numbers = to_int()
-# make a copy of numbers
 #print(get_fours(numbers))
 
 """
@@ -123,7 +117,7 @@ def brute_force_it(numbers: List[int]) -> List[int]:
     result = list()
     for i in range(100):
         for j in range(100):
-            numbs = numbers.copy()
+            numbs = copy.deepcopy(numbers)
             numbs[1] = i
             numbs[2] = j
             result = get_fours(numbs)
