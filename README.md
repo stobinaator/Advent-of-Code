@@ -9,4 +9,6 @@ D1: Both, D2: Both </br>
 D1: Both, D2: Both </br>
 
 # 2021's Advent of Code
-D1: Both, D2: Both, D3: Both </br>
+D1: Both, D2: Both, D3: Both, D4: Both*, </br>
+
+*code for the first part was really ugly, could not manage to solve the second. got help from Ilia</br>
