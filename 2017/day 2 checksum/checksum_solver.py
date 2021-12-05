@@ -30,10 +30,20 @@ cd = os.path.abspath(os.getcwd())
 def read_sequence() -> List[str]:
     with open(f"{cd}/input.txt", "r") as f:
         data = f.readlines()
-        data = [item.replace('\t', ' ').replace('\n', '') for item in data]
+        data = [item.replace('\t', ' ').replace('\n', '') for item in data] 
     return data
-    
-def compute_checksums(data_list: list) -> int:
+
+def read_seq2() -> List[List[int]]:
+    number_list = list()
+    with open(f"{cd}/input.txt", "r") as f:
+        data = f.readlines()
+        data = [item.replace('\t', ' ').replace('\n', '') for item in data]
+        for line in data:
+                split_line = line.split(' ')
+                number_list.append(list(map(int, split_line)))
+    return number_list
+
+def compute_checksums_p1(data_list: List[str]) -> int:
     checksum = 0
     for line in data_list:
         split_line = line.split(' ')
@@ -41,16 +51,24 @@ def compute_checksums(data_list: list) -> int:
         checksum += (max(number_list) - min(number_list))
     return checksum
 
+def compute_checksums2_p1(data_list: List[List[int]]) -> int:
+    checksum:int = 0
+    for num_list in data_list:
+        checksum += (max(num_list) - min(num_list))
+    return checksum
 
 
-assert compute_checksums(["5 1 9 5"]) == 8
-assert compute_checksums(["7 5 3"]) == 4
-assert compute_checksums(["2 4 6 8"]) == 6
-assert compute_checksums(["5 1 9 5", "7 5 3", "2 4 6 8"]) == 18
+assert compute_checksums_p1(["5 1 9 5"]) == 8
+assert compute_checksums_p1(["7 5 3"]) == 4
+assert compute_checksums_p1(["2 4 6 8"]) == 6
+assert compute_checksums_p1(["5 1 9 5", "7 5 3", "2 4 6 8"]) == 18
+
 
 input_text = read_sequence()
-print(input_text)
-result = compute_checksums(input_text)
+input_text2 = read_seq2()
+result = compute_checksums_p1(read_sequence())
+result2 = compute_checksums2_p1(read_seq2())
+print(result, result2)
 
 '''
 --- Part Two ---
@@ -79,7 +97,7 @@ What is the sum of each row's result in your puzzle input?
 351
 '''
 
-def compute_checksums2(numbers: list) -> int:
+def compute_checksums_p2(numbers: list) -> int:
     sum = 0
     for line in numbers:
         line = line.split(' ')
@@ -92,10 +110,25 @@ def compute_checksums2(numbers: list) -> int:
                     sum += (line[j] / line[i])
     return int(sum)
 
+def compute_checksums2_p2(numbers: List[List[int]]) -> int:
+    sum = 0
+    for num_list in numbers:
+        lst_len = len(num_list)
+        for i in range(lst_len):
+            for j in range(i+1, lst_len):
+                if num_list[i] % num_list[j] == 0:
+                    sum += (num_list[i] / num_list[j])
+                elif num_list[j] % num_list[i] == 0:
+                    sum += (num_list[j] / num_list[i])
+    return int(sum) 
 
+"""
 assert compute_checksums2(['5 9 2 8']) == 4
 assert compute_checksums2(['9 4 7 3']) == 3
 assert compute_checksums2(['3 8 6 5']) == 2
-
-
-result = compute_checksums2(input_text)
+"""
+#print(input_text)
+#print(input_text2)
+result = compute_checksums_p2(input_text)
+result2 = compute_checksums2_p2(input_text2)
+print(result, result2)
