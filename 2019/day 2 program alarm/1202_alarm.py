@@ -70,7 +70,7 @@ def grouper(n, iterable, fillvalue=None):
     return zip_longest(fillvalue=fillvalue, *args)
 
 
-def get_fours(numbers: List[int]) -> List[int]:
+def get_fours(numbers: List[int]) -> int:
     for a,b,c,d in grouper(4, numbers):
         op_code = a
         first_num = numbers[b]
@@ -89,7 +89,9 @@ def get_fours(numbers: List[int]) -> List[int]:
 
 
 numbers = to_int()
-#print(get_fours(numbers))
+#print(numbers)
+result = get_fours(numbers)
+print(result[0])
 
 """
 --- Part Two ---
@@ -125,4 +127,4 @@ def brute_force_it(numbers: List[int]) -> List[int]:
                 return 100 * result[1] + result[2]
 
 numbers = to_int()
-#print(brute_force_it(numbers))
+print(brute_force_it(numbers))
