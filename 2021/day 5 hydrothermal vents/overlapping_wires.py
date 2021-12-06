@@ -76,13 +76,11 @@ def all_points_lists(file_path: str)-> List[List[Point]]:
                     for i in range(start_p.y, start_p.y+diff+1): 
                         new_points.append(Point(start_p.x, i))
                     all_points.append(new_points)
-                    #new_points.clear()
                 elif start_p.y > end_p.y:
                     diff = start_p.y - end_p.y
                     for i in range(start_p.y, start_p.y-diff-1, -1):
                         new_points.append(Point(start_p.x, i))
                     all_points.append(new_points)
-                    #new_points.clear()
             elif start_p.y == end_p.y:
                 if start_p.x > end_p.x:
                     diff = start_p.x - end_p.x
@@ -94,7 +92,6 @@ def all_points_lists(file_path: str)-> List[List[Point]]:
                     for i in range(start_p.x,start_p.x+diff+1):
                         new_points.append(Point(i, start_p.y))
                     all_points.append(new_points)
-                    #new_points.clear()
             else:
                 continue
         
@@ -108,15 +105,12 @@ def count_occurences(all_points: List[List[Point]])-> int:
     for line in all_points:
         print(line)
         all_counts.append(Counter(line))
-    #print(all_counts)
     for count in all_counts:
         total += count
     
-    #print(total)
     for t in total:
         if total[t] >= 2:
             count_occurs += 1
-    #print(count_occurs)
     return count_occurs
 
 PATH = f'{cd}/input.txt'
@@ -124,8 +118,6 @@ all_pts = all_points_lists(PATH)
 
 ctr = count_occurences(all_pts)
 print(ctr)
-#if ctr != False:
-    #print(ctr)
 
 """
 --- Part Two ---

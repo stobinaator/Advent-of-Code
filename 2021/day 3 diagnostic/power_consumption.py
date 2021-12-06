@@ -73,8 +73,8 @@ def part_1(file_path: str) -> int:
     power_consumption = calc_power_comsumption(gamma_rate, epsilon_rate)
     return power_consumption
 
-
-#print(part_1(FILE_PATH))
+FILE_PATH = f'{cd}/ex_input.txt'
+print(part_1(FILE_PATH))
 
 """
 --- Part Two ---
@@ -140,7 +140,6 @@ def calc_co2_rating(bins: List) -> Tuple[str, int]:
     
     for i in range(bin_len):
         nrs_in_pos_x = [x[i] for x in bins_copy]
-
         if len(nrs_in_pos_x) == 1: break
 
         a = list()

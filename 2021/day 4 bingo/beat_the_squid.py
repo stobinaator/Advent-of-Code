@@ -84,9 +84,6 @@ def to_list(path_to_txt) -> Tuple[List[List[List[int]]], List[int]]:
         for elem in bingo_rows_split:
             bingo_splt.append([int(x) for x in elem if x != ''])
 
-        #print(len(bingo_splt))
-        # this line was the problem for 3 Lists     
-        #bingo_splt.append([[int(x) for x in elem if x != ''] for elem in bingo_rows_split])
         last_list = list()
         for i in range(len(bingo_splt)//5):
             last_list.append(bingo_splt[i*5:5*(i+1)])
