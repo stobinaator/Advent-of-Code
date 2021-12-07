@@ -12,7 +12,7 @@ D1: Both, D2: Both, D3:Both* </br>
 *joel
 
 # 2021's Advent of Code
-D1: Both, D2: Both, D3: Both, D4: Both*1, D5: Both*2, D6: Both*3</br>
+D1: Both, D2: Both, D3: Both, D4: Both^1, D5: Both^2, D6: Both^3, D7: Both</br>
 
 *1:code for the first part was really ugly, but worked, could not manage to solve the second. got help from Ilia.</br>
 *2:did the first one. for the second - joel's code did not work (it is not complete, gave up). ilia's worked.</br> 
