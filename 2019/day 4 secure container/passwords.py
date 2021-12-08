@@ -16,6 +16,7 @@ Other than the range rule, the following are true:
 - 123789 does not meet these criteria (no double).
 
 How many different passwords within the range given in your puzzle input meet these criteria?
+544
 """
 from collections import Counter
 
@@ -23,10 +24,9 @@ RAW_INPUT = "356261-846303"
 vals = [int(x) for x in RAW_INPUT.split('-')]
 start, end = vals[0], vals[1]
 
-legit_pass = []
-numbers = [122345,111111,799997, 679676, 677667, 799999]
 
 def legit_passwords(start: int, end: int) -> int:
+    legit_pass = []
     for number in range(start,end):
         nrs = [int(x) for x in str(number)]
         if max(Counter(nrs).values()) >= 2:
@@ -47,6 +47,18 @@ Given this additional criterion, but still ignoring the range rule, the followin
 123444 no longer meets the criteria (the repeated 44 is part of a larger group of 444).
 111122 meets the criteria (even though 1 is repeated more than twice, it still contains a double 22).
 How many different passwords within the range given in your puzzle input meet all of the criteria?
-
-
+334
 """
+
+def legit_passwords2(start: int, end: int) -> int:
+    legit_pass = []
+    for number in range(start,end):
+        nrs = [int(x) for x in str(number)]
+        if any(v == 2 for v in Counter(nrs).values()):
+            if all(y>=x for x,y in zip(nrs,nrs[1:])):
+                legit_pass.append(number)    
+
+    return legit_pass
+
+lps = legit_passwords2(start, end)
+print(len(lps))
