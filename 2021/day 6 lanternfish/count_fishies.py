@@ -100,12 +100,7 @@ def simulate_fishies2(fishies_input: List[int], days: int) -> int:
     return sum(fishies_counter.values())
 
 
-assert (simulate_fishies2(RAW, 80)) == 5934
-assert (simulate_fishies2(RAW, 256)) == 26984457539
-
-
 if __name__ == '__main__':
-    
     cd = os.path.abspath(os.getcwd())
     RAW2 = open(f'{cd}/input.txt').read().split(',')
     RAW2_NRS = [int(num) for num in RAW2]   
