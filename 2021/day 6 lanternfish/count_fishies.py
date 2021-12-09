@@ -78,6 +78,7 @@ Suppose the lanternfish live forever and have unlimited food and space. Would th
 After 256 days in the example above, there would be a total of 26984457539 lanternfish!
 
 How many lanternfish would there be after 256 days?
+1746710169834
 """
 
 def simulate_fishies2(fishies_input: List[int], days: int) -> int:
