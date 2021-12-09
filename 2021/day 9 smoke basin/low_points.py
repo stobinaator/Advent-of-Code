@@ -67,6 +67,8 @@ What do you get if you multiply together the sizes of the three largest basins?
 from typing import List, Tuple
 import os 
 
+cd = os.path.abspath(os.getcwd())
+
 RAW = """2199943210
 3987894921
 9856789892
@@ -81,14 +83,15 @@ class HeightMap:
         self.nr = len(map)
         self.nc = len(map[0])
         self.low_points = []
-        self.directions = []
+        self.nrs_in_diff_directions = []
         self.min_number = 0
 
     def iterate_map(self) -> None:
         for i in range(0, self.nr):
             for j in range(0,self.nc):
-                self.directions.clear()
+                self.nrs_in_diff_directions.clear()
                 self.min_number = 0
+                
                 # top left diagonal
                 if i == 0 and j == 0:
                     if (self.map[i][j] < self.map[i][j+1]) and (self.map[i][j] < self.map[i+1][j]):
@@ -124,11 +127,11 @@ class HeightMap:
     def nrs_in_four_dirs(self, coords: Tuple[int, int]) -> None:
         i, j = coords
         curr_nr = self.map[i][j]
-        self.directions.append(self.map[i][j+1]) # nr to the right
-        self.directions.append(self.map[i][j-1]) # nr to the left
-        self.directions.append(self.map[i+1][j]) # nr to the top
-        self.directions.append(self.map[i-1][j]) # nr to the botton
-        self.min_number = min(self.directions)
+        self.nrs_in_diff_directions.append(self.map[i][j+1]) # nr to the right
+        self.nrs_in_diff_directions.append(self.map[i][j-1]) # nr to the left
+        self.nrs_in_diff_directions.append(self.map[i+1][j]) # nr to the top
+        self.nrs_in_diff_directions.append(self.map[i-1][j]) # nr to the botton
+        self.min_number = min(self.nrs_in_diff_directions)
         if curr_nr < self.min_number:
             self.low_points.append(self.map[i][j])
 
@@ -136,14 +139,14 @@ class HeightMap:
         i, j = coords
         curr_nr = self.map[i][j]
         if i == 0:
-            self.directions.append(self.map[i][j-1]) # nr to left
-            self.directions.append(self.map[i][j+1]) # nr to right
-            self.directions.append(self.map[i+1][j]) # nr to bottom
+            self.nrs_in_diff_directions.append(self.map[i][j-1]) # nr to left
+            self.nrs_in_diff_directions.append(self.map[i][j+1]) # nr to right
+            self.nrs_in_diff_directions.append(self.map[i+1][j]) # nr to bottom
         elif i == self.nr-1:
-            self.directions.append(self.map[i][j-1]) # nr to left
-            self.directions.append(self.map[i][j+1]) # nr to right
-            self.directions.append(self.map[i-1][j]) # nr to top
-        self.min_number = min(self.directions)
+            self.nrs_in_diff_directions.append(self.map[i][j-1]) # nr to left
+            self.nrs_in_diff_directions.append(self.map[i][j+1]) # nr to right
+            self.nrs_in_diff_directions.append(self.map[i-1][j]) # nr to top
+        self.min_number = min(self.nrs_in_diff_directions)
         if curr_nr < self.min_number:
             self.low_points.append(self.map[i][j])
     
@@ -151,21 +154,19 @@ class HeightMap:
         i, j = coords
         curr_nr = self.map[i][j]
         if j == 0:
-            self.directions.append(self.map[i-1][j]) # nr to top
-            self.directions.append(self.map[i][j+1]) # nr to right
-            self.directions.append(self.map[i+1][j]) # nr to bottom
+            self.nrs_in_diff_directions.append(self.map[i-1][j]) # nr to top
+            self.nrs_in_diff_directions.append(self.map[i][j+1]) # nr to right
+            self.nrs_in_diff_directions.append(self.map[i+1][j]) # nr to bottom
         elif j == self.nc-1:
-            self.directions.append(self.map[i-1][j]) # nr to top
-            self.directions.append(self.map[i][j-1]) # nr to right
-            self.directions.append(self.map[i+1][j]) # nr to bottom
-        self.min_number = min(self.directions)
+            self.nrs_in_diff_directions.append(self.map[i-1][j]) # nr to top
+            self.nrs_in_diff_directions.append(self.map[i][j-1]) # nr to right
+            self.nrs_in_diff_directions.append(self.map[i+1][j]) # nr to bottom
+        self.min_number = min(self.nrs_in_diff_directions)
         if curr_nr < self.min_number:
             self.low_points.append(self.map[i][j])
 
     def calc_risk_level(self) -> int:
-        for i, point in enumerate(self.low_points[:]):
-            self.low_points[i] = point + 1
-        return sum(self.low_points)
+        return sum(x+1 for x in self.low_points)
         
     @staticmethod
     def parse(map: str) -> 'HeightMap':
@@ -177,9 +178,9 @@ HM = HeightMap.parse(RAW)
 HM.iterate_map()
 print(HM.calc_risk_level())
 
-cd = os.path.abspath(os.getcwd())
-input = open(f'{cd}/input.txt').read()
-hm = HeightMap.parse(input)
-hm.iterate_map()
-print(hm.calc_risk_level())
+if __name__ == '__main__':
+    input = open(f'{cd}/input.txt').read()
+    hm = HeightMap.parse(input)
+    hm.iterate_map()
+    print(hm.calc_risk_level())
 
