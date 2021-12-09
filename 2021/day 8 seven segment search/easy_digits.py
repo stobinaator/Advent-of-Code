@@ -89,6 +89,8 @@ help_dict = {2:1, 3:7, 4:4, 7:8}
 second_parts = [x.split(" | ")[1].split(" ") for x in RAW]
 
 def get_counts(second_parts: List[List[str]]) -> Dict[int, int]:
+    # this dict holds length values i.e. not number 8, 
+    # but length 7, which corresponds to number 8
     count_dict = defaultdict(int)
     for part in second_parts:
         for p in part:
@@ -97,14 +99,14 @@ def get_counts(second_parts: List[List[str]]) -> Dict[int, int]:
     return count_dict
 
 ex_res = get_counts(second_parts)
-print(sum(ex_res.values()))
+#print(sum(ex_res.values()))
 
 cd = os.path.abspath(os.getcwd())
 with open(f'{cd}/input.txt') as f:
     lines = [x.split(" | ")[1].strip().split(" ") for x in f]
 
-result = get_counts(lines)
-print(sum(result.values()))
+#result = get_counts(lines)
+#print(sum(result.values()))
 
 """
 --- Part Two ---
@@ -155,5 +157,27 @@ gbdfcae bgc cg cgb: 8717
 fgae cfgab fg bagce: 4315
 Adding all of the output values in this larger example produces 61229.
 
-For each entry, determine all of the wire/segment connections and decode the four-digit output values. What do you get if you add up all of the output values?
+For each entry, determine all of the wire/segment connections and decode the four-digit output values. What do you get if you add up all of the output values? -> 239
 """
+help_dict = {2:1, 3:7, 4:4, 7:8}
+
+four_diff = []
+
+def get_output(second_parts: List[List[str]]) -> int:
+    # this dict holds length values i.e. not number 8, 
+    # but length 7, which corresponds to number 8
+    count_dict = defaultdict(int)
+    for part in second_parts:
+        for p in part:
+            if help_dict.get(len(p)) != None:
+                four_diff.append(p)
+                
+    return set(four_diff)
+
+
+ex_res2 = get_output(second_parts)
+print(ex_res2)
+print(len(ex_res2))
+
+
+
