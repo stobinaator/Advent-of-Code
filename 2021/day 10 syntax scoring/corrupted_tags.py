@@ -88,11 +88,14 @@ The five lines' completion strings have total scores as follows:
 ])}> - 294 total points.
 Autocomplete tools are an odd bunch: the winner is found by sorting all of the scores and then taking the middle score. (There will always be an odd number of scores to consider.) In this example, the middle score is 288957 because there are the same number of scores smaller and larger than it.
 
-Find the completion string for each incomplete line, score the completion strings, and sort the scores. What is the middle score?
+Find the completion string for each incomplete line, score the completion strings, and sort the scores. What is the middle score? -> 3969823589
 """
 
 import os
-from typing import List
+from typing import List, Dict
+from copy import deepcopy
+from collections import defaultdict
+from statistics import median
 cd = os.path.abspath(os.getcwd())
 
 RAW = """[({(<(())[]>[[{[]{<()<>>
@@ -115,32 +118,57 @@ class Syntax:
         self.opening_tags = ['(','[','{','<']
         self.closing_tags = [')',']','}','>']
         self.prices = {')': 3, ']': 57, '}' : 1197, '>' : 25137}
+        self.prices2 = {'(': 1, '[': 2, '{' : 3, '<' : 4}
         self.corresponding_tags = dict(zip(self.closing_tags, self.opening_tags))
-        self.otags_visited = []
-        self.corrupt_tags = []
+
+        self.otags_visited = [[] for _ in range(len(tag_lines))]
+        self.illegal_tags = []
+        self.illegal_tag_line_index = []
+        self.last_otags = []
+        self.scores = []
 
     def get_corrupted_tags(self)-> List[str]:
-        for line in self.tag_lines:
+        for i , line in enumerate(self.tag_lines):
             if line[0] in self.closing_tags: break
 
             for tag in line:
                 if tag in self.opening_tags:
-                    self.otags_visited.append(tag)
+                    self.otags_visited[i].append(tag)
                     continue
                 if tag in self.closing_tags:
                     # tag ), last visited is (
                     # corresponding gets ) -> returns (, and last visited is also (
-                    if self.corresponding_tags.get(tag) == self.otags_visited[-1]:
-                        del self.otags_visited[-1]
+                    if self.corresponding_tags.get(tag) == self.otags_visited[i][-1]:
+                        del self.otags_visited[i][-1]
                         continue
                     else:
-                        self.corrupt_tags.append(tag)
+                        self.illegal_tags.append(tag)
+                        self.illegal_tag_line_index.append(i)
                         break
-        return self.corrupt_tags
+        return self.illegal_tags
 
     def syntax_error_score(self) -> List[str]:
-        return sum(self.prices.get(x) for x in self.corrupt_tags)
-    
+        return sum(self.prices.get(x) for x in self.illegal_tags)
+
+    def remaining_lines(self) -> None:
+        """
+        if a line had an illegal tag it will be removed
+        only the lines with legal tags remain
+        """
+        self.last_otags = [x for i,x in enumerate(self.otags_visited) if i not in self.illegal_tag_line_index]
+        
+    def remainig_score(self) -> None:
+        for line in self.last_otags:
+            score = 0
+            for tag in line[::-1]:
+                score *= 5 
+                score += self.prices2.get(tag)
+                
+            self.scores.append(score)
+
+    def meadian_score(self) -> int:
+        return median(self.scores)
+
     @staticmethod
     def parse(tag_lines: str) -> 'Syntax':
         return Syntax([[char for char in line] for line in tag_lines.splitlines()])
@@ -151,7 +179,9 @@ if __name__ == '__main__':
     synt = Syntax.parse(raw)
     cts = synt.get_corrupted_tags()
     score = synt.syntax_error_score()
-    print(score)
-   
+    synt.remaining_lines()
+    synt.remainig_score()
+    ms = synt.meadian_score()
+    print(ms)
 
 
