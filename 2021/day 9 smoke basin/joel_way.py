@@ -1,4 +1,5 @@
-from typing import Iterable, Iterator, Tuple
+from typing import Iterable, Iterator, Tuple, List
+from copy import deepcopy
 import os
 
 cd = os.path.abspath(os.getcwd())
@@ -37,10 +38,47 @@ class HeightMap:
             if self.is_low_point(r, c)
         )
     
+    def find_basin_size(self, r: int, c: int) -> int:
+        m = deepcopy(self.map)
+        stack = [(r, c)]
+        visited = {(r, c)}
+        basin_size = 0
+        while stack:
+            r, c = stack.pop()
+            basin_size += 1
+            m[r][c] = 9
+
+            for r_, c_ in self.neighbors(r, c):
+                if m[r_][c_] != 9 and (r_, c_) not in visited:
+                    stack.append((r_, c_))
+                    visited.add((r_, c_))
+        return basin_size
+    
+    def all_low_points(self) -> List[Tuple[int, int]]:
+        return [(r,c) 
+                for r in range(self.nr)
+                for c in range(self.nc)
+                if self.is_low_point(r, c)]
+
+    def all_basin_sizes(self) -> List[int]:
+        return [self.find_basin_size(r, c)
+                for r, c in self.all_low_points()]
+
+    def three_largest_basins_product(self) -> int:
+        all_basin_sizes = sorted(self.all_basin_sizes(), reverse=True)
+        return all_basin_sizes[0] * all_basin_sizes[1] * all_basin_sizes[2]
+
+
 HM = HeightMap(RAW)   
 assert HM.total_risk_level_of_low_points() == 15
+
+assert sorted(HM.all_basin_sizes()) == [3, 9, 9, 14]
+
+assert HM.three_largest_basins_product() == 9 * 9 * 14
 
 if __name__ == '__main__':
     raw = open(f'{cd}/input.txt').read()
     hm = HeightMap(raw)
     print(hm.total_risk_level_of_low_points())
+    print(hm.three_largest_basins_product())
+    
