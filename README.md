@@ -1,7 +1,7 @@
 Each day's folder holds an input file with test-data, my solution and a Joel Grus' solution, which is not just copied, rather, watched a video and understood his way.</br>
 
 # 2017's Advent of Code
-D1: Both, D2: Both, D3: Both° </br>
+D1: Both, D2: Both, D3: Both°, D4: Both </br>
 
 °joel
 
