@@ -117,9 +117,8 @@ class Syntax:
         self.tag_lines = tag_lines
         self.opening_tags = ['(','[','{','<']
         self.closing_tags = [')',']','}','>']
-        self.prices = {')': 3, ']': 57, '}' : 1197, '>' : 25137}
-        self.prices2 = {'(': 1, '[': 2, '{' : 3, '<' : 4}
         self.corresponding_tags = dict(zip(self.closing_tags, self.opening_tags))
+        self.prices = {')': 3, ']': 57, '}' : 1197, '>' : 25137, '(': 1, '[': 2, '{' : 3, '<' : 4}
 
         self.otags_visited = [[] for _ in range(len(tag_lines))]
         self.illegal_tags = []
@@ -162,8 +161,7 @@ class Syntax:
             score = 0
             for tag in line[::-1]:
                 score *= 5 
-                score += self.prices2.get(tag)
-                
+                score += self.prices.get(tag) 
             self.scores.append(score)
 
     def meadian_score(self) -> int:
