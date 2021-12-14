@@ -102,6 +102,7 @@ class Caves:
 
 
 CAVES1 = Caves.parse(RAW1)
+print(CAVES1.caves)
 AP1 = CAVES1.find_all_paths()
 assert len(AP1) == 10
 AP12 = CAVES1.find_all_paths2()
@@ -120,10 +121,11 @@ assert len(AP3) == 226
 AP32 = CAVES3.find_all_paths2()
 assert len(AP32) == 3509
 
+"""
 if __name__ == '__main__':
     raw = open(f'{cd}/input.txt').read()
     caves = Caves.parse(raw)
     paths = caves.find_all_paths()
     print(f"Part 1: {len(paths)}")
     paths = caves.find_all_paths2()
-    print(f"Part 2: {len(paths)}")
+    print(f"Part 2: {len(paths)}")"""
