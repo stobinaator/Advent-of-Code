@@ -59,7 +59,9 @@ Apply 40 steps of pair insertion to the polymer template and find the most and l
 """
 from typing import Dict, List, Counter
 import os
+
 cd = os.path.abspath(os.getcwd())
+
 class Polymer:
     def __init__(self, instructions: Dict[str, str], template: str) -> None:
         self.instructions = instructions
