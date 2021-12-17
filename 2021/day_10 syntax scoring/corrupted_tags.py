@@ -96,6 +96,7 @@ from typing import List, Dict
 from copy import deepcopy
 from collections import defaultdict
 from statistics import median
+
 cd = os.path.abspath(os.getcwd())
 
 RAW = """[({(<(())[]>[[{[]{<()<>>
@@ -109,16 +110,25 @@ RAW = """[({(<(())[]>[[{[]{<()<>>
 <{([([[(<>()){}]>(<<{{
 <{([{{}}[<[[[<>{}]]]>[]]"""
 
-INPUT = [[cha for cha in line ] for line in RAW.splitlines()]
+INPUT = [[cha for cha in line] for line in RAW.splitlines()]
 
 
 class Syntax:
     def __init__(self, tag_lines: List[List[str]]) -> None:
         self.tag_lines = tag_lines
-        self.opening_tags = ['(','[','{','<']
-        self.closing_tags = [')',']','}','>']
+        self.opening_tags = ["(", "[", "{", "<"]
+        self.closing_tags = [")", "]", "}", ">"]
         self.corresponding_tags = dict(zip(self.closing_tags, self.opening_tags))
-        self.prices = {')': 3, ']': 57, '}' : 1197, '>' : 25137, '(': 1, '[': 2, '{' : 3, '<' : 4}
+        self.prices = {
+            ")": 3,
+            "]": 57,
+            "}": 1197,
+            ">": 25137,
+            "(": 1,
+            "[": 2,
+            "{": 3,
+            "<": 4,
+        }
 
         self.otags_visited = [[] for _ in range(len(tag_lines))]
         self.illegal_tags = []
@@ -126,9 +136,10 @@ class Syntax:
         self.last_otags = []
         self.scores = []
 
-    def get_corrupted_tags(self)-> List[str]:
-        for i , line in enumerate(self.tag_lines):
-            if line[0] in self.closing_tags: break
+    def get_corrupted_tags(self) -> List[str]:
+        for i, line in enumerate(self.tag_lines):
+            if line[0] in self.closing_tags:
+                break
 
             for tag in line:
                 if tag in self.opening_tags:
@@ -154,26 +165,30 @@ class Syntax:
         if a line had an illegal tag it will be removed
         only the lines with legal tags remain
         """
-        self.last_otags = [x for i,x in enumerate(self.otags_visited) if i not in self.illegal_tag_line_index]
-        
+        self.last_otags = [
+            x
+            for i, x in enumerate(self.otags_visited)
+            if i not in self.illegal_tag_line_index
+        ]
+
     def remainig_score(self) -> None:
         for line in self.last_otags:
             score = 0
             for tag in line[::-1]:
-                score *= 5 
-                score += self.prices.get(tag) 
+                score *= 5
+                score += self.prices.get(tag)
             self.scores.append(score)
 
     def meadian_score(self) -> int:
         return median(self.scores)
 
     @staticmethod
-    def parse(tag_lines: str) -> 'Syntax':
+    def parse(tag_lines: str) -> "Syntax":
         return Syntax([[char for char in line] for line in tag_lines.splitlines()])
 
 
-if __name__ == '__main__':
-    raw = open(f'{cd}/input.txt').read()
+if __name__ == "__main__":
+    raw = open(f"{cd}/input.txt").read()
     synt = Syntax.parse(raw)
     cts = synt.get_corrupted_tags()
     score = synt.syntax_error_score()
@@ -181,5 +196,3 @@ if __name__ == '__main__':
     synt.remainig_score()
     ms = synt.meadian_score()
     print(ms)
-
-

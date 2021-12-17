@@ -43,8 +43,9 @@ cd = os.path.abspath(os.getcwd())
 
 
 def conv_input_list(file_path: str) -> List[str]:
-    with open(file_path, 'r') as f:
+    with open(file_path, "r") as f:
         return [binary.strip() for binary in f]
+
 
 def calc_gamma_rate(bins: List) -> Tuple[str, int]:
     bin_len = len(bins[0])
@@ -55,23 +56,26 @@ def calc_gamma_rate(bins: List) -> Tuple[str, int]:
 
     return gamma_bin, int(gamma_bin, 2)
 
+
 def calc_epsilon_rate(gamma_bin: str) -> Tuple[str, int]:
     epsilon_bin = str()
     for g_b in gamma_bin:
-        epsilon_bin += "1" if g_b == "0" else "0" 
+        epsilon_bin += "1" if g_b == "0" else "0"
     return epsilon_bin, int(epsilon_bin, 2)
+
 
 def calc_power_comsumption(gamma_rate: int, epsilon_rate: int) -> int:
     return gamma_rate * epsilon_rate
-    
-    
+
+
 def part_1(file_path: str) -> int:
-    bins= conv_input_list(file_path)
+    bins = conv_input_list(file_path)
     gamma_bin, gamma_rate = calc_gamma_rate(bins)
     _, epsilon_rate = calc_epsilon_rate(gamma_bin)
     return calc_power_comsumption(gamma_rate, epsilon_rate)
 
-FILE_PATH = f'{cd}/ex_input.txt'
+
+FILE_PATH = f"{cd}/ex_input.txt"
 print(part_1(FILE_PATH))
 
 """
@@ -107,38 +111,41 @@ Use the binary numbers in your diagnostic report to calculate the oxygen generat
 4125600
 """
 
+
 def calc_oxyg_rating(bins: List) -> Tuple[str, int]:
     bin_len = len(bins[0])
     bins_copy = copy.deepcopy(bins)
-    
+
     for i in range(bin_len):
         nrs_in_pos_x = [x[i] for x in bins_copy]
-        
-        if len(nrs_in_pos_x) == 1: break
-        
+
+        if len(nrs_in_pos_x) == 1:
+            break
+
         a = []
         dict_count = Counter(nrs_in_pos_x)
         [a.append(lis) for lis in dict_count.values()]
         if a[0] == a[1]:
             [nrs_in_pos_x.remove(n) for n in nrs_in_pos_x[:] if n == "0"]
             a.clear()
-                
+
         if Counter(nrs_in_pos_x).most_common(1)[0][0] == "1":
             [bins_copy.remove(b) for b in bins_copy[:] if b[i] == "0"]
-            
+
         elif Counter(nrs_in_pos_x).most_common(1)[0][0] == "0":
             [bins_copy.remove(b) for b in bins_copy[:] if b[i] == "1"]
-   
+
     return bins_copy[0], int(bins_copy[0], 2)
-                    
-            
+
+
 def calc_co2_rating(bins: List) -> Tuple[str, int]:
     bin_len = len(bins[0])
     bins_copy = copy.deepcopy(bins)
-    
+
     for i in range(bin_len):
         nrs_in_pos_x = [x[i] for x in bins_copy]
-        if len(nrs_in_pos_x) == 1: break
+        if len(nrs_in_pos_x) == 1:
+            break
 
         a = []
         dict_count = Counter(nrs_in_pos_x)
@@ -149,24 +156,24 @@ def calc_co2_rating(bins: List) -> Tuple[str, int]:
 
         if Counter(nrs_in_pos_x).most_common(1)[0][0] == "1":
             [bins_copy.remove(b) for b in bins_copy[:] if b[i] == "1"]
-            
+
         elif Counter(nrs_in_pos_x).most_common(1)[0][0] == "0":
             [bins_copy.remove(b) for b in bins_copy[:] if b[i] == "0"]
 
     return bins_copy[0], int(bins_copy[0], 2)
+
 
 def calc_lifesupport_rate(oxygen: int, co2: int) -> int:
     return oxygen * co2
 
-FILE_PATH = f'{cd}/ex_input.txt'
-bins= conv_input_list(FILE_PATH)
+
+FILE_PATH = f"{cd}/ex_input.txt"
+bins = conv_input_list(FILE_PATH)
 _, ox_rate = calc_oxyg_rating(bins)
 
 _, co2_rate = calc_co2_rating(bins)
 res = calc_lifesupport_rate(ox_rate, co2_rate)
 print(res)
-
-
 
 
 """

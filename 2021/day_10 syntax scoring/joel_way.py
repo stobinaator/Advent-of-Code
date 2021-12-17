@@ -12,7 +12,8 @@ RAW = """[({(<(())[]>[[{[]{<()<>>
 <{([([[(<>()){}]>(<<{{
 <{([{{}}[<[[[<>{}]]]>[]]"""
 
-OC = {"[" : "]", "(" : ")", "<" : ">", "{" : "}"}
+OC = {"[": "]", "(": ")", "<": ">", "{": "}"}
+
 
 def first_illegal_character(s: str) -> Optional[str]:
     stack = []
@@ -24,15 +25,17 @@ def first_illegal_character(s: str) -> Optional[str]:
                 return c
     return None
 
+
 SCORE = {
-    ")" : 3,
-    "]" : 57,
-    "}" : 1197,
-    ">" : 25137,
+    ")": 3,
+    "]": 57,
+    "}": 1197,
+    ">": 25137,
 }
 
+
 def score(line: str) -> int:
-    fic  = first_illegal_character(line)
+    fic = first_illegal_character(line)
     if fic:
         return SCORE[fic]
     else:
@@ -42,12 +45,8 @@ def score(line: str) -> int:
 LINES = RAW.splitlines()
 assert sum(score(line) for line in LINES) == 26397
 
-COMPLETION_SCORES = {
-    ")" : 1,
-    "]" : 2,
-    "}" : 3,
-    ">" : 4
-}   
+COMPLETION_SCORES = {")": 1, "]": 2, "}": 3, ">": 4}
+
 
 def completion(s: str) -> List[str]:
     assert first_illegal_character(s) is None
@@ -57,8 +56,9 @@ def completion(s: str) -> List[str]:
             stack.append(c)
         else:
             assert c == OC[stack.pop()]
-    
+
     return [OC[c] for c in reversed(stack)]
+
 
 def score_completion(completion: List[str]) -> int:
     score = 0
@@ -66,6 +66,7 @@ def score_completion(completion: List[str]) -> int:
         score *= 5
         score += COMPLETION_SCORES[c]
     return score
+
 
 def median_completion_score(lines: List[str]) -> int:
     completion_scores = [
@@ -76,11 +77,12 @@ def median_completion_score(lines: List[str]) -> int:
     assert len(completion_scores) % 2 == 1
     return sorted(completion_scores)[len(completion_scores) // 2]
 
+
 assert median_completion_score(LINES) == 288957
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cd = os.path.abspath(os.getcwd())
-    raw = open(f'{cd}/input.txt').read()
+    raw = open(f"{cd}/input.txt").read()
     lines = raw.splitlines()
     print(sum(score(line) for line in lines))
     print(median_completion_score(lines))

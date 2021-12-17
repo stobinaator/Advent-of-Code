@@ -21,12 +21,13 @@ RAW = """7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 22 11 13  6  5
 2  0 12  3  7"""
 
+
 class Board:
     def __init__(self, grid: List[List[int]]):
         self.grid = grid
         self.nr = len(grid)
         self.nc = len(grid[0])
-        
+
         self.row_counts = [0 for _ in range(self.nr)]
         self.col_counts = [0 for _ in range(self.nc)]
 
@@ -36,8 +37,8 @@ class Board:
                 if self.grid[i][j] == number:
                     self.row_counts[i] += 1
                     self.col_counts[j] += 1
-                    self.grid[i][j] = -1 # not good at all
- 
+                    self.grid[i][j] = -1  # not good at all
+
     def is_winner(self) -> bool:
         if any(rc == self.nc for rc in self.row_counts):
             return True
@@ -45,20 +46,15 @@ class Board:
             return True
         else:
             return False
-    
-    def score(self, number:int) -> int:
-        return number * sum(entry
-                            for row in self.grid
-                            for entry in row
-                            if entry != -1)
-    
+
+    def score(self, number: int) -> int:
+        return number * sum(entry for row in self.grid for entry in row if entry != -1)
+
     @staticmethod
-    def parse(raw: str) -> 'Board':
-        grid = [
-            [int(n) for n in row.split()]
-            for row in raw.split('\n')
-        ]
+    def parse(raw: str) -> "Board":
+        grid = [[int(n) for n in row.split()] for row in raw.split("\n")]
         return Board(grid)
+
 
 class Game:
     def __init__(self, numbers: List[int], boards: List[Board]) -> None:
@@ -90,16 +86,17 @@ class Game:
             for board in to_remove:
                 self.boards.remove(board)
         raise ValueError("No winner")
-    
+
     @staticmethod
-    def parse(raw: str) -> 'Game':
+    def parse(raw: str) -> "Game":
         paragraphs = raw.split("\n\n")
-        numbers = [int(n) for n in paragraphs[0].split(',')]
+        numbers = [int(n) for n in paragraphs[0].split(",")]
 
         paragraphs = paragraphs[1:]
         boards = [Board.parse(paragraph) for paragraph in paragraphs]
 
         return Game(numbers, boards)
+
 
 GAME = Game.parse(RAW)
 SCORE = GAME.play()
@@ -109,9 +106,9 @@ GAME = Game.parse(RAW)
 SCORE = GAME.play_last()
 assert SCORE == 1924
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cd = os.path.abspath(os.getcwd())
-    raw = open(f'{cd}/input.txt').read()
+    raw = open(f"{cd}/input.txt").read()
     game = Game.parse(raw)
     print(game.play())
 

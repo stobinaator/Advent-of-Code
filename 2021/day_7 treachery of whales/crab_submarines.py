@@ -57,43 +57,51 @@ from typing import List
 import statistics
 from math import floor, ceil
 
+
 def part1(raw_numbers):
     fuel_count = {}
     max_nr = max(raw_numbers)
-    for i in range(max_nr//2):
-        fuel = sum(abs(num-i) for num in raw_numbers)
+    for i in range(max_nr // 2):
+        fuel = sum(abs(num - i) for num in raw_numbers)
         fuel_count[i] = fuel
     return min(fuel_count.values())
 
+
 def opt_fuel_sum(raw_numbers):
     med = statistics.median(raw_numbers)
-    fuel = sum(abs(x-med) for x in raw_numbers)
+    fuel = sum(abs(x - med) for x in raw_numbers)
     return int(fuel)
+
 
 def part2(raw_numbers):
     fuel_count = {}
     max_nr = max(raw_numbers)
-    for i in range(max_nr//2):
-        fuel = sum(sum(range(1,abs(num - i)+1)) for num in raw_numbers)
+    for i in range(max_nr // 2):
+        fuel = sum(sum(range(1, abs(num - i) + 1)) for num in raw_numbers)
         fuel_count[i] = fuel
-    
+
     return min(fuel_count.values())
 
 
 def opt_fuel_sum2(raw_numbers):
     meean = statistics.mean(raw_numbers)
-    fuel = min(0.5*sum(abs(x-ceil(meean))**2 + abs(x-ceil(meean)) for x in raw_numbers),
-               0.5*sum(abs(x-floor(meean))**2 + abs(x-floor(meean)) for x in raw_numbers))
+    fuel = min(
+        0.5
+        * sum(abs(x - ceil(meean)) ** 2 + abs(x - ceil(meean)) for x in raw_numbers),
+        0.5
+        * sum(abs(x - floor(meean)) ** 2 + abs(x - floor(meean)) for x in raw_numbers),
+    )
 
     return int(fuel)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     cd = os.path.abspath(os.getcwd())
 
-    RAW = open(f'{cd}/input.txt').read()
-    RAW_NRS = [int(nr) for nr in RAW.split(',')]
+    RAW = open(f"{cd}/input.txt").read()
+    RAW_NRS = [int(nr) for nr in RAW.split(",")]
 
-    EXAMPLE_INPUT = [16,1,2,0,4,2,7,1,2,14]
+    EXAMPLE_INPUT = [16, 1, 2, 0, 4, 2, 7, 1, 2, 14]
     print(part1(EXAMPLE_INPUT))
     print(part1(RAW_NRS))
 
@@ -102,6 +110,6 @@ if __name__ == '__main__':
 
     print(part2(EXAMPLE_INPUT))
     # it takes around 8seconds
-    #print(part2(RAW_NRS))
+    # print(part2(RAW_NRS))
     print(opt_fuel_sum2(EXAMPLE_INPUT))
     print(opt_fuel_sum2(RAW_NRS))

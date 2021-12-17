@@ -42,7 +42,7 @@ from collections import namedtuple, Counter
 import os
 from typing import List
 
-Point = namedtuple('Point', ['x','y'])
+Point = namedtuple("Point", ["x", "y"])
 
 RAW_INPUT = """0,9 -> 5,9
 8,0 -> 0,8
@@ -58,46 +58,48 @@ RAW_INPUT = """0,9 -> 5,9
 
 cd = os.path.abspath(os.getcwd())
 
-def all_points_lists(file_path: str)-> List[List[Point]]:
+
+def all_points_lists(file_path: str) -> List[List[Point]]:
     all_points = list()
     with open(file_path) as f:
         for line in f:
-            
+
             line = line.strip()
-            arraw_inx = line.index('->')
-            x1, y1 = line[:arraw_inx-1].split(',')
-            x2, y2 = line[arraw_inx+3:].split(',')
+            arraw_inx = line.index("->")
+            x1, y1 = line[: arraw_inx - 1].split(",")
+            x2, y2 = line[arraw_inx + 3 :].split(",")
             start_p = Point(int(x1), int(y1))
             end_p = Point(int(x2), int(y2))
             new_points = list()
             if start_p.x == end_p.x:
                 if start_p.y < end_p.y:
                     diff = end_p.y - start_p.y
-                    for i in range(start_p.y, start_p.y+diff+1): 
+                    for i in range(start_p.y, start_p.y + diff + 1):
                         new_points.append(Point(start_p.x, i))
                     all_points.append(new_points)
                 elif start_p.y > end_p.y:
                     diff = start_p.y - end_p.y
-                    for i in range(start_p.y, start_p.y-diff-1, -1):
+                    for i in range(start_p.y, start_p.y - diff - 1, -1):
                         new_points.append(Point(start_p.x, i))
                     all_points.append(new_points)
             elif start_p.y == end_p.y:
                 if start_p.x > end_p.x:
                     diff = start_p.x - end_p.x
-                    for i in range(start_p.x, start_p.x-diff-1, -1):
+                    for i in range(start_p.x, start_p.x - diff - 1, -1):
                         new_points.append(Point(i, start_p.y))
                     all_points.append(new_points)
                 elif start_p.x < end_p.x:
                     diff = end_p.x - start_p.x
-                    for i in range(start_p.x,start_p.x+diff+1):
+                    for i in range(start_p.x, start_p.x + diff + 1):
                         new_points.append(Point(i, start_p.y))
                     all_points.append(new_points)
             else:
                 continue
-        
+
     return all_points
 
-def count_occurences(all_points: List[List[Point]])-> int:
+
+def count_occurences(all_points: List[List[Point]]) -> int:
     all_counts = list()
     total = Counter()
     count_occurs = 0
@@ -107,13 +109,14 @@ def count_occurences(all_points: List[List[Point]])-> int:
         all_counts.append(Counter(line))
     for count in all_counts:
         total += count
-    
+
     for t in total:
         if total[t] >= 2:
             count_occurs += 1
     return count_occurs
 
-PATH = f'{cd}/input.txt'
+
+PATH = f"{cd}/input.txt"
 all_pts = all_points_lists(PATH)
 
 ctr = count_occurences(all_pts)

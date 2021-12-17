@@ -64,77 +64,83 @@ from typing import List, Tuple
 
 cd = os.path.abspath(os.getcwd())
 
+
 def to_list(path_to_txt) -> Tuple[List[List[List[int]]], List[int]]:
     bingo_splt = list()
-    with open(path_to_txt, 'r') as f:
+    with open(path_to_txt, "r") as f:
         content = f.read()
         # holds all the lines
         content_list = content.splitlines()
-        
+
         # this is the 1st row
-        draw_nrs = [int(num) for num in content_list[0].split(',')]
-        
+        draw_nrs = [int(num) for num in content_list[0].split(",")]
+
         # List[str]
-        bingo_rows = [thing for thing in content_list[1:] if thing != '']
-        
+        bingo_rows = [thing for thing in content_list[1:] if thing != ""]
+
         # List[List[str]]
-        bingo_rows_split = [b.strip().replace(" ",",").split(',') for b in bingo_rows]
-        
+        bingo_rows_split = [b.strip().replace(" ", ",").split(",") for b in bingo_rows]
+
         # List[List[int]]
         for elem in bingo_rows_split:
-            bingo_splt.append([int(x) for x in elem if x != ''])
+            bingo_splt.append([int(x) for x in elem if x != ""])
 
         last_list = list()
-        for i in range(len(bingo_splt)//5):
-            last_list.append(bingo_splt[i*5:5*(i+1)])
-  
+        for i in range(len(bingo_splt) // 5):
+            last_list.append(bingo_splt[i * 5 : 5 * (i + 1)])
+
     return last_list, draw_nrs
+
 
 def count_rest_sum(bingo_board: List[int], drawn_number: int) -> int:
     count = 0
     for i in range(5):
         for j in range(5):
-            if isinstance(bingo_board[i][j],int):
+            if isinstance(bingo_board[i][j], int):
                 count += bingo_board[i][j]
     return count * drawn_number
 
+
 def check_if_winner(bingo_board: List[int], drawn_number: int):
     counter_cols = []
-    counter_rows = [list(map(lambda x: x=='X', row)) for row in bingo_board]
-    
+    counter_rows = [list(map(lambda x: x == "X", row)) for row in bingo_board]
+
     for i in range(5):
         col = [x[i] for x in bingo_board]
-        counter_cols.append(list(map(lambda x: x=='X', col)))
-        
+        counter_cols.append(list(map(lambda x: x == "X", col)))
+
     row_counts = [sum(ro) for ro in counter_rows]
     col_counts = [sum(co) for co in counter_cols]
 
     row_res = [num == 5 for num in row_counts]
     col_res = [num == 5 for num in col_counts]
-    
-    for x in row_res+col_res:
+
+    for x in row_res + col_res:
         if x:
             return count_rest_sum(bingo_board, drawn_number)
     return False
 
-def solve_it(bingo_array:List[List[int]], draw_nrs: List[int]) -> int:
-    bingo_copy = copy.deepcopy(bingo_array)    
+
+def solve_it(bingo_array: List[List[int]], draw_nrs: List[int]) -> int:
+    bingo_copy = copy.deepcopy(bingo_array)
     for number in draw_nrs:
         for x in range(len(bingo_array)):
             for i in range(5):
                 for j in range(5):
                     if bingo_array[x][i][j] == number:
-                        bingo_copy[x][i][j] = 'X'
+                        bingo_copy[x][i][j] = "X"
                         count = check_if_winner(bingo_copy[x], number)
                         if count:
                             return count
 
+
 def part_one() -> int:
-    PATH = f'{cd}/input.txt'
+    PATH = f"{cd}/input.txt"
     bingo_board, draw_nrs = to_list(PATH)
     return solve_it(bingo_board, draw_nrs)
 
-#print(part_one())
+
+# print(part_one())
 """
 --- Part Two ---
 On the other hand, it might be wise to try a different strategy: let the giant squid win.
@@ -146,46 +152,53 @@ In the above example, the second board is the last to win, which happens after 1
 Figure out which board will win last. Once it wins, what would its final score be?
 31755
 """
- 
-example_array = [[[14, 21, 17, 24, 4], 
-                [10, 16, 15, 9, 19], 
-                [18, 8, 23, 26, 20], 
-                [22, 11, 13, 6, 5], 
-                [2, 0, 12, 3, 7]],
 
-                [[3,15,0,2,22],
-                [9,18,13,17,5],
-                [19,8,7,25,23],
-                [14,21,16,12,6],
-                [20,11,10,24,4]],
-                
-                [[22,13,17,11,0],
-                [8,2,23,4,24],
-                [21,9,14,16,7],
-                [6,10,3,18,5],
-                [1,12,20,15,19]]]
+example_array = [
+    [
+        [14, 21, 17, 24, 4],
+        [10, 16, 15, 9, 19],
+        [18, 8, 23, 26, 20],
+        [22, 11, 13, 6, 5],
+        [2, 0, 12, 3, 7],
+    ],
+    [
+        [3, 15, 0, 2, 22],
+        [9, 18, 13, 17, 5],
+        [19, 8, 7, 25, 23],
+        [14, 21, 16, 12, 6],
+        [20, 11, 10, 24, 4],
+    ],
+    [
+        [22, 13, 17, 11, 0],
+        [8, 2, 23, 4, 24],
+        [21, 9, 14, 16, 7],
+        [6, 10, 3, 18, 5],
+        [1, 12, 20, 15, 19],
+    ],
+]
 
-PATH = f'{cd}/ex_input.txt'
+PATH = f"{cd}/ex_input.txt"
 bingo_board, draw_nrs = to_list(PATH)
-#print(solve_it(bingo_board, draw_nrs))
+# print(solve_it(bingo_board, draw_nrs))
 
 
-def solve_it2(bingo_array:List[List[int]], draw_nrs: List[int]) -> int:
+def solve_it2(bingo_array: List[List[int]], draw_nrs: List[int]) -> int:
     bingo_copy = copy.deepcopy(bingo_array)
-    another_copy = copy.deepcopy(bingo_array)    
+    another_copy = copy.deepcopy(bingo_array)
     for number in draw_nrs:
         for x in range(len(bingo_array)):
             for i in range(5):
                 for j in range(5):
                     if bingo_array[x][i][j] == number:
-                        bingo_copy[x][i][j] = 'X'
+                        bingo_copy[x][i][j] = "X"
                         count = check_if_winner(bingo_copy[x], number)
-                        
+
                         if count != False:
                             print(bingo_copy)
                             del another_copy[x]
                             print(another_copy)
                             return count
                     print()
+
 
 print(solve_it2(bingo_board, draw_nrs))

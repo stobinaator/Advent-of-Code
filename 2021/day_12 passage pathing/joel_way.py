@@ -43,8 +43,10 @@ zg-he
 pj-fs
 start-RW"""
 
+
 def is_big(cave: str) -> bool:
     return cave.isupper()
+
 
 class Caves:
     def __init__(self, pairs: List[Tuple[str, str]]) -> None:
@@ -52,24 +54,24 @@ class Caves:
         for cave1, cave2 in pairs:
             self.caves[cave1].append(cave2)
             self.caves[cave2].append(cave1)
-    
+
     @staticmethod
-    def parse(raw: str) -> 'Caves':
+    def parse(raw: str) -> "Caves":
         pairs = []
         for line in raw.splitlines():
-            cave1, cave2 = line.split('-')
+            cave1, cave2 = line.split("-")
             pairs.append((cave1, cave2))
         return Caves(pairs)
 
     def find_all_paths(self) -> List[List[str]]:
         paths = []
-        frontier = [['start']]
-        
+        frontier = [["start"]]
+
         while frontier:
             path = frontier.pop()
             cave = path[-1]
 
-            if cave == 'end':
+            if cave == "end":
                 paths.append(path)
             else:
                 for next_cave in self.caves[cave]:
@@ -80,23 +82,26 @@ class Caves:
     def find_all_paths2(self) -> List[List[str]]:
         paths = set()
         lowers = {
-                cave 
-                for cave in self.caves
-                if cave.islower() and cave not in ('start','end')}
-        frontier = [['start']]
-        
+            cave
+            for cave in self.caves
+            if cave.islower() and cave not in ("start", "end")
+        }
+        frontier = [["start"]]
+
         while frontier:
             path = frontier.pop()
             cave = path[-1]
 
-            if cave == 'end':
+            if cave == "end":
                 paths.add(tuple(path))
             else:
                 for next_cave in self.caves[cave]:
                     duplicate_smalls = [cave for cave in lowers if path.count(cave) > 1]
-                    if (is_big(next_cave) or 
-                        (not duplicate_smalls and next_cave != "start") or
-                        (next_cave not in path)):
+                    if (
+                        is_big(next_cave)
+                        or (not duplicate_smalls and next_cave != "start")
+                        or (next_cave not in path)
+                    ):
                         frontier.append(path + [next_cave])
         return list(paths)
 

@@ -47,10 +47,12 @@ from itertools import cycle
 
 cd = os.path.abspath(os.getcwd())
 
+
 def to_ints():
-    with open(f'{cd}/input.txt',"r") as f:
+    with open(f"{cd}/input.txt", "r") as f:
         input_numbers = [int(number.strip()) for number in f]
     return input_numbers
+
 
 def depth_increases_count(numbers_int: List[int]) -> int:
     return sum(
@@ -58,8 +60,10 @@ def depth_increases_count(numbers_int: List[int]) -> int:
         for curr_depth, next_depth in zip(numbers_int, numbers_int[1:])
     )
 
+
 def depth_increases_count2(numbers_int: List[int]) -> int:
-    return sum((n2-n1)>0 for n1, n2 in zip(numbers_int, numbers_int[1:]))
+    return sum((n2 - n1) > 0 for n1, n2 in zip(numbers_int, numbers_int[1:]))
+
 
 result = to_ints()
 res = depth_increases_count2(result)
@@ -92,18 +96,20 @@ increases from the previous sum. So, compare A with B, then compare B with C, th
 Stop when there aren't enough measurements left to create a new three-measurement sum.
 """
 
+
 def three_measurement_windows(nums_int: List[int]) -> int:
     increases = 0
     first_sum = 0
     second_sum = 0
-    for num1, num2, num3, num4 in zip(nums_int, nums_int[1:], nums_int[2:], nums_int[3:]):
+    for num1, num2, num3, num4 in zip(
+        nums_int, nums_int[1:], nums_int[2:], nums_int[3:]
+    ):
         first_sum = num1 + num2 + num3
-        second_sum = num2 + num3 + num4 
+        second_sum = num2 + num3 + num4
         if first_sum < second_sum:
             increases += 1
     return increases
 
-        
 
 result = to_ints()
 res = three_measurement_windows(result)

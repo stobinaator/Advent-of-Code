@@ -36,15 +36,17 @@ from typing import List
 
 cd = os.path.abspath(os.getcwd())
 
+
 def to_int() -> List[str]:
     with open(f"{cd}/input.txt", "r") as f:
         return [position.strip() for position in f]
+
 
 def get_hor_depth_position(metrics) -> int:
     horiz_pos = 0
     depth_pos = 0
     for metrics in metrics:
-        direction, value = metrics.split(' ')
+        direction, value = metrics.split(" ")
         value = int(value)
         if direction == "forward":
             horiz_pos += value
@@ -52,23 +54,26 @@ def get_hor_depth_position(metrics) -> int:
             depth_pos -= value
         elif direction == "down":
             depth_pos += value
-    return horiz_pos*depth_pos
+    return horiz_pos * depth_pos
+
 
 def get_hor_depth_position2(metrics) -> int:
     metrics_dict = defaultdict(int)
     for met in metrics:
-        direction, value = met.split(' ')
+        direction, value = met.split(" ")
         value = int(value)
         metrics_dict[direction] += value
-    return metrics_dict['forward'] * (metrics_dict['down'] - metrics_dict['up'])
+    return metrics_dict["forward"] * (metrics_dict["down"] - metrics_dict["up"])
+
 
 def get_hor_depth_position3(metrics) -> int:
     metrics_dict = {}
     for met in metrics:
-        direction, value = met.split(' ')
+        direction, value = met.split(" ")
         value = int(value)
         metrics_dict[direction] = metrics_dict.get(direction, 0) + value
-    return metrics_dict['forward'] * (metrics_dict['down'] - metrics_dict['up'])
+    return metrics_dict["forward"] * (metrics_dict["down"] - metrics_dict["up"])
+
 
 def first_way() -> int:
     """
@@ -77,6 +82,7 @@ def first_way() -> int:
     metrics = to_int()
     return get_hor_depth_position(metrics)
 
+
 def second_way() -> int:
     """
     default dict
@@ -84,12 +90,14 @@ def second_way() -> int:
     metrics = to_int()
     return get_hor_depth_position2(metrics)
 
+
 def third_way() -> int:
     """
     normal dict
     """
     metrics = to_int()
     return get_hor_depth_position3(metrics)
+
 
 print(first_way())
 print(second_way())
@@ -122,21 +130,22 @@ Using this new interpretation of the commands, calculate the horizontal position
 1727785422
 """
 
+
 def get_hor_depth_position_p2(metrics) -> int:
     horiz_pos = 0
     depth_pos = 0
     aim_pos = 0
     for metrics in metrics:
-        direction, value = metrics.split(' ')
+        direction, value = metrics.split(" ")
         value = int(value)
         if direction == "forward":
             horiz_pos += value
-            depth_pos += (aim_pos * value)
+            depth_pos += aim_pos * value
         elif direction == "up":
             aim_pos -= value
         elif direction == "down":
             aim_pos += value
-    return horiz_pos*depth_pos
+    return horiz_pos * depth_pos
 
 
 def first_way() -> int:

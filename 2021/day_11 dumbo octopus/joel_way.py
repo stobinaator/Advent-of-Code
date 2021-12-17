@@ -1,6 +1,7 @@
 from typing import Tuple, Iterable
 import os
 import itertools
+
 cd = os.path.abspath(os.getcwd())
 RAW = """5483143223
 2745854711
@@ -15,6 +16,7 @@ RAW = """5483143223
 
 XY = Tuple[int, int]
 
+
 class Grid:
     def __init__(self, grid: Iterable[Iterable[str]]):
         self.grid = [[int(x) for x in row] for row in grid]
@@ -23,10 +25,10 @@ class Grid:
 
     def neighbors(self, x: int, y: int) -> Iterable[XY]:
         """returns the coordinates of all neighbors of (x,y)"""
-        for i in range(x-1, x+2):
-            for j in range(y-1, y+2):
-                if 0 <= i < self.nr and 0 <= j < self.nc and (i,j) != (x,y):
-                    yield i, j 
+        for i in range(x - 1, x + 2):
+            for j in range(y - 1, y + 2):
+                if 0 <= i < self.nr and 0 <= j < self.nc and (i, j) != (x, y):
+                    yield i, j
 
     def step(self) -> int:
         """returns the number of flashes"""
@@ -37,17 +39,18 @@ class Grid:
 
         flashed = set()
         while True:
-            need_to_flash = [(i,j) 
-                            for i in range(self.nr) 
-                            for j in range(self.nc)
-                            if self.grid[i][j] > 9
-                            and (i,j) not in flashed] 
+            need_to_flash = [
+                (i, j)
+                for i in range(self.nr)
+                for j in range(self.nc)
+                if self.grid[i][j] > 9 and (i, j) not in flashed
+            ]
             if not need_to_flash:
                 break
-            for i,j in need_to_flash:
-                flashed.add((i,j))
+            for i, j in need_to_flash:
+                flashed.add((i, j))
                 # increment all the neighs
-                for ii, jj in self.neighbors(i,j):
+                for ii, jj in self.neighbors(i, j):
                     self.grid[ii][jj] += 1
 
         # set all flashed cells to 0
@@ -60,7 +63,8 @@ class Grid:
             if self.step() == self.nr * self.nc:
                 return step
         raise RuntimeError("cannot get here")
-        
+
+
 GRID = Grid(RAW.splitlines())
 assert sum(GRID.step() for _ in range(10)) == 204
 
@@ -70,10 +74,10 @@ assert sum(GRID.step() for _ in range(100)) == 1656
 GRID = Grid(RAW.splitlines())
 assert GRID.steps_to_all_flash() == 195
 
-if __name__ == '__main__':
-    raw = open(f'{cd}/input.txt').read()
+if __name__ == "__main__":
+    raw = open(f"{cd}/input.txt").read()
     grid = Grid(raw.splitlines())
     print(sum(grid.step() for _ in range(100)))
-    
+
     grid = Grid(raw.splitlines())
     print(grid.steps_to_all_flash())

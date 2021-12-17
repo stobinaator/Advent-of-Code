@@ -1,6 +1,6 @@
 from collections import namedtuple
 from typing import Counter, List, Tuple
-import os 
+import os
 
 RAW = """0,9 -> 5,9
 8,0 -> 0,8
@@ -13,7 +13,7 @@ RAW = """0,9 -> 5,9
 0,0 -> 8,8
 5,5 -> 8,2"""
 
-Point = namedtuple('Point', ['x', 'y'])
+Point = namedtuple("Point", ["x", "y"])
 
 
 # fugly
@@ -31,7 +31,7 @@ def get_line_seg(start_pt: Point, end_pt: Point, part: int = 1) -> List[Point]:
         y_dist = y_end - y_start
 
         for y in range(1, y_dist):
-            line_seg.append(Point(start_pt.x, y_start+y))
+            line_seg.append(Point(start_pt.x, y_start + y))
 
     elif start_pt.y == end_pt.y:
         x_dist = x_end - x_start
@@ -42,11 +42,13 @@ def get_line_seg(start_pt: Point, end_pt: Point, part: int = 1) -> List[Point]:
         if part == 1:
             line_seg = []
         else:
-            direction = Point(x=1 if (end_pt.x-start_pt.x) > 0 else -1,
-                              y=1 if (end_pt.y-start_pt.y) > 0 else -1)
+            direction = Point(
+                x=1 if (end_pt.x - start_pt.x) > 0 else -1,
+                y=1 if (end_pt.y - start_pt.y) > 0 else -1,
+            )
             i = 1
             while True:
-                pt = Point(start_pt.x+i*direction.x, start_pt.y+i*direction.y)
+                pt = Point(start_pt.x + i * direction.x, start_pt.y + i * direction.y)
                 if pt in line_seg:
                     break
                 line_seg.append(pt)
@@ -57,9 +59,9 @@ def get_line_seg(start_pt: Point, end_pt: Point, part: int = 1) -> List[Point]:
 def input_to_segments(input_string: str) -> List[Tuple[int, int, int, int]]:
     seg_pts = []
     for line in input_string.splitlines():
-        left, right = line.split(' -> ')
-        r_x, r_y = [int(x) for x in right.split(',')]
-        l_x, l_y = [int(x) for x in left.split(',')]
+        left, right = line.split(" -> ")
+        r_x, r_y = [int(x) for x in right.split(",")]
+        l_x, l_y = [int(x) for x in left.split(",")]
         seg_pts.append((l_x, l_y, r_x, r_y))
     return seg_pts
 

@@ -56,10 +56,10 @@ from collections import defaultdict, Counter
 from typing import List
 
 
-RAW = [int(num) for num in "3,4,3,1,2".split(',')]
+RAW = [int(num) for num in "3,4,3,1,2".split(",")]
 
 
-def simulate_fishies(fishies_input: List[int], days:int) -> int:
+def simulate_fishies(fishies_input: List[int], days: int) -> int:
     for days in range(days):
         for i, inp in enumerate(fishies_input):
             if inp > 0:
@@ -68,6 +68,7 @@ def simulate_fishies(fishies_input: List[int], days:int) -> int:
                 fishies_input[i] = 6
                 fishies_input.append(9)
     return len(fishies_input)
+
 
 print(simulate_fishies(RAW, 80))
 
@@ -81,6 +82,7 @@ How many lanternfish would there be after 256 days?
 1746710169834
 """
 
+
 def simulate_fishies2(fishies_input: List[int], days: int) -> int:
     fishies_counter = {k: fishies_input.count(k) for k in range(10)}
     n_zeros = fishies_counter[0]
@@ -93,7 +95,7 @@ def simulate_fishies2(fishies_input: List[int], days: int) -> int:
         # decrement times by 1
         for n in range(1, 10):
             if fishies_counter[n] > 0:
-                fishies_counter[n-1] = fishies_counter[n]
+                fishies_counter[n - 1] = fishies_counter[n]
                 fishies_counter[n] = 0
         # get number of timers which are 0
         n_zeros = fishies_counter[0]
@@ -101,9 +103,9 @@ def simulate_fishies2(fishies_input: List[int], days: int) -> int:
     return sum(fishies_counter.values())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cd = os.path.abspath(os.getcwd())
-    RAW2 = open(f'{cd}/input.txt').read().split(',')
-    RAW2_NRS = [int(num) for num in RAW2]   
+    RAW2 = open(f"{cd}/input.txt").read().split(",")
+    RAW2_NRS = [int(num) for num in RAW2]
     print(simulate_fishies2(RAW2_NRS, 80))
     print(simulate_fishies2(RAW2_NRS, 256))
