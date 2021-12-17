@@ -85,7 +85,7 @@ def simulate_fishies2(fishies_input: List[int], days: int) -> int:
     fishies_counter = {k: fishies_input.count(k) for k in range(10)}
     n_zeros = fishies_counter[0]
 
-    for i in range(days):
+    for _ in range(days):
         # add new fish if there are any 0's
         fishies_counter[7] += fishies_counter[0]
         fishies_counter[0] = 0

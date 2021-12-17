@@ -44,8 +44,7 @@ cd = os.path.abspath(os.getcwd())
 
 def conv_input_list(file_path: str) -> List[str]:
     with open(file_path, 'r') as f:
-        bins = [binary.strip() for binary in f]
-        return bins
+        return [binary.strip() for binary in f]
 
 def calc_gamma_rate(bins: List) -> Tuple[str, int]:
     bin_len = len(bins[0])
@@ -70,8 +69,7 @@ def part_1(file_path: str) -> int:
     bins= conv_input_list(file_path)
     gamma_bin, gamma_rate = calc_gamma_rate(bins)
     _, epsilon_rate = calc_epsilon_rate(gamma_bin)
-    power_consumption = calc_power_comsumption(gamma_rate, epsilon_rate)
-    return power_consumption
+    return calc_power_comsumption(gamma_rate, epsilon_rate)
 
 FILE_PATH = f'{cd}/ex_input.txt'
 print(part_1(FILE_PATH))
@@ -118,7 +116,7 @@ def calc_oxyg_rating(bins: List) -> Tuple[str, int]:
         
         if len(nrs_in_pos_x) == 1: break
         
-        a = list()
+        a = []
         dict_count = Counter(nrs_in_pos_x)
         [a.append(lis) for lis in dict_count.values()]
         if a[0] == a[1]:
@@ -142,7 +140,7 @@ def calc_co2_rating(bins: List) -> Tuple[str, int]:
         nrs_in_pos_x = [x[i] for x in bins_copy]
         if len(nrs_in_pos_x) == 1: break
 
-        a = list()
+        a = []
         dict_count = Counter(nrs_in_pos_x)
         [a.append(lis) for lis in dict_count.values()]
         if a[0] == a[1]:

@@ -88,8 +88,8 @@ class HeightMap:
         self.min_number = 0
 
     def iterate_map(self) -> None:
-        for i in range(0, self.nr):
-            for j in range(0,self.nc):
+        for i in range(self.nr):
+            for j in range(self.nc):
                 self.nrs_in_diff_directions.clear()
                 self.min_number = 0
                 
@@ -118,11 +118,11 @@ class HeightMap:
                     self.nrs_in_four_dirs((i,j))
 
                 # whole first/last row 
-                elif (i == 0 or i == self.nr-1) and (1 <= j <= self.nc-2):
+                elif i in [0, self.nr-1] and (1 <= j <= self.nc-2):
                     self.nrs_in_three_dirs_horiz((i,j))
 
                 # whole far-left/right col
-                elif (1<= i <= self.nr-2) and (j == 0 or j == self.nc-1):
+                elif (1<= i <= self.nr-2) and j in [0, self.nc-1]:
                     self.nrs_in_three_dirs_vert((i,j))
                     
     def nrs_in_four_dirs(self, coords: Tuple[int, int]) -> None:

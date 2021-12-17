@@ -99,22 +99,18 @@ def count_rest_sum(bingo_board: List[int], drawn_number: int) -> int:
     return count * drawn_number
 
 def check_if_winner(bingo_board: List[int], drawn_number: int):
+    counter_cols = []
+    counter_rows = [list(map(lambda x: x=='X', row)) for row in bingo_board]
     
-    counter_rows = list()
-    counter_cols = list()
-    for i,row in enumerate(bingo_board):    
-        counter_rows.append(list(map(lambda x: x=='X', row)))
-   
     for i in range(5):
         col = [x[i] for x in bingo_board]
-        
         counter_cols.append(list(map(lambda x: x=='X', col)))
         
     row_counts = [sum(ro) for ro in counter_rows]
     col_counts = [sum(co) for co in counter_cols]
-    
-    row_res = [True if num == 5 else False for num in row_counts]
-    col_res = [True if num == 5 else False for num in col_counts]
+
+    row_res = [num == 5 for num in row_counts]
+    col_res = [num == 5 for num in col_counts]
     
     for x in row_res+col_res:
         if x:
@@ -133,11 +129,10 @@ def solve_it(bingo_array:List[List[int]], draw_nrs: List[int]) -> int:
                         if count:
                             return count
 
-def part_one() -> int :
+def part_one() -> int:
     PATH = f'{cd}/input.txt'
     bingo_board, draw_nrs = to_list(PATH)
-    result = solve_it(bingo_board, draw_nrs)
-    return result
+    return solve_it(bingo_board, draw_nrs)
 
 #print(part_one())
 """

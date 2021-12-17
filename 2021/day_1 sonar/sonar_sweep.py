@@ -48,19 +48,18 @@ from itertools import cycle
 cd = os.path.abspath(os.getcwd())
 
 def to_ints():
-    with open(f"{cd}/input.txt","r") as f:
+    with open(f'{cd}/input.txt',"r") as f:
         input_numbers = [int(number.strip()) for number in f]
     return input_numbers
 
 def depth_increases_count(numbers_int: List[int]) -> int:
-    increases = 0
-    for curr_depth, next_depth in zip(numbers_int, numbers_int[1:]):
-        if curr_depth < next_depth:
-            increases += 1
-    return increases
+    return sum(
+        curr_depth < next_depth
+        for curr_depth, next_depth in zip(numbers_int, numbers_int[1:])
+    )
 
 def depth_increases_count2(numbers_int: List[int]) -> int:
-    return sum([(n2-n1)>0 for n1, n2 in zip(numbers_int, numbers_int[1:])])
+    return sum((n2-n1)>0 for n1, n2 in zip(numbers_int, numbers_int[1:]))
 
 result = to_ints()
 res = depth_increases_count2(result)

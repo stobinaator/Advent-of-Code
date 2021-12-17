@@ -38,18 +38,17 @@ cd = os.path.abspath(os.getcwd())
 
 def to_int() -> List[str]:
     with open(f"{cd}/input.txt", "r") as f:
-        position_metrics = [position.strip() for position in f] 
-        return position_metrics
+        return [position.strip() for position in f]
 
 def get_hor_depth_position(metrics) -> int:
     horiz_pos = 0
     depth_pos = 0
-    for _, metrics in enumerate(metrics):
+    for metrics in metrics:
         direction, value = metrics.split(' ')
         value = int(value)
         if direction == "forward":
             horiz_pos += value
-        if direction == "up":
+        elif direction == "up":
             depth_pos -= value
         elif direction == "down":
             depth_pos += value
@@ -64,7 +63,7 @@ def get_hor_depth_position2(metrics) -> int:
     return metrics_dict['forward'] * (metrics_dict['down'] - metrics_dict['up'])
 
 def get_hor_depth_position3(metrics) -> int:
-    metrics_dict = dict()
+    metrics_dict = {}
     for met in metrics:
         direction, value = met.split(' ')
         value = int(value)
@@ -76,24 +75,21 @@ def first_way() -> int:
     List iteration
     """
     metrics = to_int()
-    result = get_hor_depth_position(metrics)
-    return result
+    return get_hor_depth_position(metrics)
 
 def second_way() -> int:
     """
     default dict
     """
     metrics = to_int()
-    result = get_hor_depth_position2(metrics)
-    return result
+    return get_hor_depth_position2(metrics)
 
 def third_way() -> int:
     """
     normal dict
     """
     metrics = to_int()
-    result = get_hor_depth_position3(metrics)
-    return result
+    return get_hor_depth_position3(metrics)
 
 print(first_way())
 print(second_way())
@@ -130,13 +126,13 @@ def get_hor_depth_position_p2(metrics) -> int:
     horiz_pos = 0
     depth_pos = 0
     aim_pos = 0
-    for _, metrics in enumerate(metrics):
+    for metrics in metrics:
         direction, value = metrics.split(' ')
         value = int(value)
         if direction == "forward":
             horiz_pos += value
             depth_pos += (aim_pos * value)
-        if direction == "up":
+        elif direction == "up":
             aim_pos -= value
         elif direction == "down":
             aim_pos += value
@@ -145,5 +141,4 @@ def get_hor_depth_position_p2(metrics) -> int:
 
 def first_way() -> int:
     metrics = to_int()
-    result = get_hor_depth_position_p2(metrics)
-    return result
+    return get_hor_depth_position_p2(metrics)

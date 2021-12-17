@@ -58,12 +58,10 @@ import statistics
 from math import floor, ceil
 
 def part1(raw_numbers):
-    fuel_count = dict()
+    fuel_count = {}
     max_nr = max(raw_numbers)
     for i in range(max_nr//2):
-        fuel = 0
-        for num in raw_numbers:
-            fuel += abs(num - i)
+        fuel = sum(abs(num-i) for num in raw_numbers)
         fuel_count[i] = fuel
     return min(fuel_count.values())
 
@@ -73,12 +71,10 @@ def opt_fuel_sum(raw_numbers):
     return int(fuel)
 
 def part2(raw_numbers):
-    fuel_count = dict()
+    fuel_count = {}
     max_nr = max(raw_numbers)
     for i in range(max_nr//2):
-        fuel = 0
-        for num in raw_numbers:
-            fuel += sum(range(1,abs(num - i)+1))
+        fuel = sum(sum(range(1,abs(num - i)+1)) for num in raw_numbers)
         fuel_count[i] = fuel
     
     return min(fuel_count.values())
@@ -109,5 +105,3 @@ if __name__ == '__main__':
     #print(part2(RAW_NRS))
     print(opt_fuel_sum2(EXAMPLE_INPUT))
     print(opt_fuel_sum2(RAW_NRS))
-
-    
