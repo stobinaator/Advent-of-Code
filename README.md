@@ -40,7 +40,7 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 - [x] D14: Both°9
 - [x] D15: Both°X
 - [x] D16: Both°XI
-- [ ] D17:
+- [x] D17: Both
 - [x] D18: Both°XII
 - [ ] D19:
 - [ ] D20:
