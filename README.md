@@ -41,6 +41,10 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 - [x] D15: Both°X
 - [x] D16: Both°XI
 - [ ] D17:
+- [x] D18: Both°XII
+- [ ] D19:
+- [ ] D20:
+
 
 °1:code for the first part was really ugly, but worked, could not manage to solve the second. got help from Ilia.</br>
 °2:first done. for the second - joel's code did not work (it is not complete, gave up). ilia's worked.</br> 
@@ -52,3 +56,4 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 °8:own code works with example input. need help for real input.</br>
 °9:got it working for the first part, the second part wanted really big computation and my solution didn't work. found a really good one on reddit.</br>
 °X&XI: joel</br>
+°XII: jonathan paulson, because joel's code wasn't completed</br>
