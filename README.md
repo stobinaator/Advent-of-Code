@@ -38,13 +38,13 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 - [x] D12: Both°7
 - [x] D13: Both°8
 - [x] D14: Both°9
-- [x] D15: Both°X
-- [x] D16: Both°XI
+- [x] D15: Both°10
+- [x] D16: Both°11
 - [x] D17: Both
-- [x] D18: Both°XII
+- [x] D18: Both°12
 - [ ] D19:
-- [ ] D20:
-- [x] D21: Both
+- [x] D20: Both°14
+- [x] D21: Both°13
 - [] D22:
 - [] D23:
 - [] D24:
@@ -60,5 +60,7 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 °7:no idea how to do it. at all. - help for both.</br>
 °8:own code works with example input. need help for real input.</br>
 °9:got it working for the first part, the second part wanted really big computation and my solution didn't work. found a really good one on reddit.</br>
-°X&XI: joel</br>
-°XII: jonathan paulson, because joel's code wasn't completed</br>
+°10%11: joel</br>
+°12: jonathan paulson, because joel's code wasn't completed</br>
+°13: had the right idea, but got it wrong somewhere. I was trying to solve it by more complicated way than needed</br> 
+°14: this was a hard one</br>
