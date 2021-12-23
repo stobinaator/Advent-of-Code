@@ -45,10 +45,10 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 - [ ] D19:
 - [x] D20: Both°14
 - [x] D21: Both°13
-- [] D22:
-- [] D23:
-- [] D24:
-- [] D25:
+- [ ] D22:
+- [ ] D23:
+- [ ] D24:
+- [ ] D25:
 
 
 °1:code for the first part was really ugly, but worked, could not manage to solve the second. got help from Ilia.</br>
