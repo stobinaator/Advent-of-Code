@@ -45,10 +45,10 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 - [ ] D19:
 - [x] D20: Both°14
 - [x] D21: Both°13
-- [ ] D22:
+- [x] D22: Both°16
 - [ ] D23:
 - [ ] D24:
-- [X] D25: √ 8 more stars for the second °15
+- [x] D25: √ 8 more stars for the second °15
 
 
 °1: code for the first part was really ugly, but worked, could not manage to solve the second. got help from Ilia.</br>
@@ -65,3 +65,4 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 °13: had the right idea, but got it wrong somewhere. I was trying to solve it by more complicated way than needed</br> 
 °14: this was a hard one</br>
 °15: actually the task was easier than it looked</br>
+°16: first: understood why I wasn't able to get the answer. the second part was too hard</br> 
