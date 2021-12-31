@@ -46,7 +46,7 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 - [x] D20: Both°14
 - [x] D21: Both°13
 - [x] D22: Both°16
-- [ ] D23:
+- [x] D23: Both°18
 - [x] D24: Both°17
 - [x] D25: √ 8 more stars for the second °15
 
@@ -67,3 +67,4 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 °15: actually the task was easier than it looked</br>
 °16: first: understood why I wasn't able to get the answer. the second part was too hard</br> 
 °17: this one was really hard to understand. the couple videos I've watched were really hard to follow</br>
+°18: got the first part on piece of paper. got the code for the second, haven't checked it how it works</br>
