@@ -1,5 +1,3 @@
-Each day's folder holds an input file with test-data, my solution and a Joel Grus' solution, which is not just copied, rather, watched a video and understood his way.</br>
-
 # 2017's Advent of Code
 - [x] D1: Both. 
 - [x] D2: Both
@@ -42,7 +40,7 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 - [x] D16: Both°11
 - [x] D17: Both
 - [x] D18: Both°12
-- [ ] D19:
+- [x] D19: Both°19
 - [x] D20: Both°14
 - [x] D21: Both°13
 - [x] D22: Both°16
@@ -68,3 +66,4 @@ Each day's folder holds an input file with test-data, my solution and a Joel Gru
 °16: first: understood why I wasn't able to get the answer. the second part was too hard</br> 
 °17: this one was really hard to understand. the couple videos I've watched were really hard to follow</br>
 °18: got the first part on piece of paper. got the code for the second, haven't checked it how it works</br>
+°19: have to check and try to understand this one, it was hard</br>

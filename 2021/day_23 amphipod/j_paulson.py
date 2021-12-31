@@ -1,9 +1,5 @@
-from collections import defaultdict, Counter, deque
+from collections import Counter
 from copy import deepcopy
-
-# submit(len(G), part="a", day=23, year=2021)
-# infile = sys.argv[1] if len(sys.argv)>1 else '23.in'
-# data = open(infile).read().strip()
 
 #############
 # ...........#

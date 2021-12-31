@@ -96,4 +96,5 @@ Between the first and second lines of text that contain amphipod starting positi
   #D#B#A#C#
 
 Using the initial configuration from the full diagram, what is the least energy required to organize the amphipods?
+-> 50208
 """
