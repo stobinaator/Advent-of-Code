@@ -67,3 +67,7 @@
 °17: this one was really hard to understand. the couple videos I've watched were really hard to follow</br>
 °18: got the first part on piece of paper. got the code for the second, haven't checked it how it works</br>
 °19: have to check and try to understand this one, it was hard</br>
+
+
+# 2022's Advent of Code
+- [x] D1: Both
