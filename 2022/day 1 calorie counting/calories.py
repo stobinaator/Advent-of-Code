@@ -77,11 +77,6 @@ def task_one(calories):
             result = 0
     return results
 
-def task_two(results):
-    results = sorted(results, reverse=True)
-    total = sum(results[:3])
-    return total
-
 if __name__ == "__main__":
     cd = os.path.abspath(os.getcwd())
     with open(f"{cd}/input.txt", "r") as f:
@@ -91,5 +86,5 @@ if __name__ == "__main__":
     result_one = task_one(calories)
     print(max(result_one))
 
-    result_two = task_two(result_one)
+    result_two = sum(sorted(result_one, reverse=True)[:3])
     print(result_two)
