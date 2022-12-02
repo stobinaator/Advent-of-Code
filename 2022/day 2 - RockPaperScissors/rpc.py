@@ -86,7 +86,7 @@ need_to_do = {
 
 def total_rpc_score(moves):
     total_result = 0
-    for a,b in moves:
+    for a, b in moves:
         result = 0
         op_move = opponent_moves.get(a)
         my_move = my_moves.get(b)
@@ -105,16 +105,16 @@ def total_rpc_score(moves):
 
 def rpc_part2(moves):
     total_result = 0
-    for a,b in moves:
+    for a, b in moves:
         result = 0
         op_move = opponent_moves.get(a)
-        need = need_to_do.get(b)
-        if need == "D":
+        i_need_to = need_to_do.get(b)
+        if i_need_to == "D":
             result = 3 + shape_score.get(op_move)
-        elif need == "W":
+        elif i_need_to == "W":
             me = a_is_beaten_by_b.get(op_move)
             result = 6 + shape_score.get(me)
-        elif need == "L":
+        elif i_need_to == "L":
             me = b_looses_by_a.get(op_move)
             result = 0 + shape_score.get(me)
         total_result += result
