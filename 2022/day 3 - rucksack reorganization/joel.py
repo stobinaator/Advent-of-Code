@@ -1,4 +1,4 @@
-from string import ascii_lowercase, ascii_uppercase
+from string import ascii_letters
 
 RAW ="""vJrwpWtwJgWrhcsFMMfFFhFp
 jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
@@ -10,7 +10,7 @@ CrZsJsPPZsGzwwsLwLmpwMDw
 RUCKSACKS = RAW.strip().split("\n")
 rucksacks = open("input.txt").read().strip().split("\n")
 
-CHARS = '.' + ascii_lowercase + ascii_uppercase
+CHARS = '.' + ascii_letters
 
 def priority(c: str) -> int:
     return CHARS.index(c)
