@@ -67,7 +67,7 @@ print(raw_sections)
 
 input = [[[int(sec) for sec in section.split("-")] for section in sections.split(",")] for sections in open("input.txt").read().strip().split("\n")]
 
-def check_if_sections_overlap(sections):
+def check_fully_overlap(sections):
     overlapping_sections = 0
     for section in sections:
         left_section = section[0]
@@ -88,13 +88,13 @@ def check_if_sections_overlap(sections):
     return overlapping_sections
 
 
-assert check_if_sections_overlap([[[1,1], [1,1]]]) == 1
-assert check_if_sections_overlap([[[1,2,3,4], [2,3]]]) == 1
-assert check_if_sections_overlap([[[2,3], [1,2,3,4]]]) == 1
-assert check_if_sections_overlap([[[2,4], [6,8]]]) == 0
-assert check_if_sections_overlap(raw_sections) == 2
+assert check_fully_overlap([[[1,1], [1,1]]]) == 1
+assert check_fully_overlap([[[1,2,3,4], [2,3]]]) == 1
+assert check_fully_overlap([[[2,3], [1,2,3,4]]]) == 1
+assert check_fully_overlap([[[2,4], [6,8]]]) == 0
+assert check_fully_overlap(raw_sections) == 2
 
-part1 = check_if_sections_overlap(input)
+part1 = check_fully_overlap(input)
 print(part1)
 
 def create_ranges(section):
@@ -103,7 +103,7 @@ def create_ranges(section):
         new_section.append(i)
     return new_section
 
-def check_for_full_overlap(sections):
+def check_partial_overlap(sections):
     fully_overlapping_sections = 0
     for section in sections:
         left_section = section[0]
@@ -114,7 +114,7 @@ def check_for_full_overlap(sections):
             fully_overlapping_sections += 1
     return fully_overlapping_sections
 
-assert check_for_full_overlap(raw_sections) == 4
+assert check_partial_overlap(raw_sections) == 4
 
-part2 = check_for_full_overlap(input)
+part2 = check_partial_overlap(input)
 print(part2)
