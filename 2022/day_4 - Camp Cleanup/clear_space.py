@@ -97,19 +97,12 @@ assert check_fully_overlap(raw_sections) == 2
 part1 = check_fully_overlap(input)
 print(part1)
 
-def create_ranges(section):
-    new_section = []
-    for i in range(section[0], section[-1]+1):
-        new_section.append(i)
-    return new_section
 
 def check_partial_overlap(sections):
     fully_overlapping_sections = 0
     for section in sections:
-        left_section = section[0]
-        right_section = section[1]
-        left = create_ranges(left_section)
-        right = create_ranges(right_section)
+        left = [i for i in range(section[0][0], section[0][1]+1)]
+        right = [i for i in range(section[1][0], section[1][1]+1)]
         if len(set(left) & set(right)) > 0:
             fully_overlapping_sections += 1
     return fully_overlapping_sections
