@@ -118,19 +118,3 @@ assert check_for_full_overlap(raw_sections) == 4
 
 part2 = check_for_full_overlap(input)
 print(part2)
-
-# new solution
-def check_for_both_overlaps(sections, part):
-    fully_overlapping_sections = 0
-    for section in sections:
-        left_section = section[0]
-        right_section = section[1]
-        if part == 2:
-            left_section = create_ranges(left_section)
-            right_section = create_ranges(right_section)
-        if len(set(left_section) & set(right_section)) > 0:
-            fully_overlapping_sections += 1
-    return fully_overlapping_sections
-
-assert check_for_both_overlaps(raw_sections, 1) == 2
-assert check_for_both_overlaps(raw_sections, 2) == 4
