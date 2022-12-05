@@ -111,7 +111,7 @@ move 1 from 1 to 2
 """
 
 STACK = [
-    # first is top, last is bottom
+    # first is bottom, last is top
     ["Z", "N"],
     ["M", "C", "D"],
     ["P"]
