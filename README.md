@@ -82,6 +82,8 @@
 - [x] D5: Both
 - [x] D6: Both°1
 - [x] D7: Both°2
+- [x] D8: Both°3
 
 °1 - got the examples with recursion, after that it did not work. J.Paulson with the smart solution</br>
 °2 - got the example. after that could not understand why I was getting my error. J.Paulson again with the nice solution</br>
+°3 - could not think how to go deeper in either direction.</br>
