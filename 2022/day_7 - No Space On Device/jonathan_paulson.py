@@ -40,24 +40,23 @@ for line in lines:
             path.append(words[2])
     elif words[1] == "ls":
         continue
+    elif words[0] == "dir":
+        continue
     else:
-        try:
-            sz = int(words[0])
-            for i in range(len(path)+1):
-                SZ["/".join(path[:i])] += sz
-        except:
-            pass
+        sz = int(words[0])
+        for i in range(len(path)+1):
+            SZ["/".join(path[:i])] += sz
 
 max_used = 70_000_000 - 30_000_000
 total_used = SZ["/"] # 2_476_859
 need_to_free = total_used - max_used
 
-best = 1e9
-ans = 0
+p1 = 0
+p2 = 1e9
 for k,v in SZ.items():
-    if v >= need_to_free:
-        best = min(best, v)
     if v <= 100_000:
-        ans += v
-print(ans)
-print(best)
+        p1 += v
+    if v >= need_to_free:
+        p2 = min(p2, v)
+print(p1)
+print(p2)
