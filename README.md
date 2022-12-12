@@ -86,9 +86,10 @@
 - [x] D8:  Both°3
 - [x] D9:  P1. P2°4
 - [x] D10: Both
-- [x] D11: P1. 
+- [x] D11: P1. P2°5
 
 °1 - I got the examples with recursion, after that it did not work. J.Paulson with the smart solution. Joel with deque idea.</br>
 °2 - got the example. after that could not understand why I was getting my error. J.Paulson again with the nice solution. Joel with more verbose solution.</br>
 °3 - could not think how to go deeper in either direction.</br>
 °4 - got only the first part. J.Paulson helped again.</br>
+°5 - got the first. Couldn't think out the modulo logic (beforehand) to make it faster.</br>
