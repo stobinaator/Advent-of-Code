@@ -340,7 +340,7 @@ class Monkey:
 
     def __init__(self, items, operation, divisible,truf, fals):
         self.items = items
-        self.operation = operation 
+        self.operation = compile(operation, '<string>', 'eval')
         self.divisible = divisible
         self.truf = truf 
         self.fals = fals
@@ -352,14 +352,12 @@ class Monkey:
     def use_operation(self, monkeys):
         result = 0
         for item in self.items:
-            result = eval(self.operation.replace("old", str(item)))
+            result = eval(self.operation)
             result //= 3
             if result % self.divisible == 0:
-                m2 = monkeys[self.truf]
-                m2.items.append(result)
+                monkeys[self.truf].items.append(result)
             else:
-                m2 = monkeys[self.fals]
-                m2.items.append(result)
+                monkeys[self.fals].items.append(result)
         return monkeys
                 
     def add_total_items(self):
@@ -371,7 +369,7 @@ def parse_monkey_objects(lines: list[list[str]]):
     monkeys = []
     for line in lines:
         items = [int(num) for num in line[1].split(":")[1].strip().split(",")]
-        operation = line[2].split("=")[1].strip()
+        operation = line[2].split("=")[1].strip().replace("old", "item")
         divisible = int(line[3].split("by")[1].strip())
         truth, falseth = int(line[4].split("monkey")[1].strip()), int(line[5].split("monkey")[1].strip())
         monkeys.append(Monkey(items,
