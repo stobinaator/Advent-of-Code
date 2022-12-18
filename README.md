@@ -52,7 +52,7 @@
 - [x] D22: Both°16
 - [x] D23: Both°18
 - [x] D24: Both°17
-- [x] D25: √ 8 more stars for the second °15
+- [x] D25: Both°15
 
 
 °1: code for the first part was really ugly, but worked, could not manage to solve the second. got help from Ilia.</br>
@@ -88,9 +88,12 @@
 - [x] D10: Both
 - [x] D11: P1. P2°5
 - [x] D12: Both°7
-- [x] D13: Both °6 
+- [x] D13: Both°6 
 - [ ] D14:  
 - [ ] D15:  
+- [ ] D16:  
+- [ ] D17:  
+- [ ] D18:  
 
 °1 - I got the examples with recursion, after that it did not work. J.Paulson with the smart solution. Joel with deque idea.</br>
 °2 - got the example. after that could not understand why I was getting my error. J.Paulson again with the nice solution. Joel with more verbose solution.</br>
