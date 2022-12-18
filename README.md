@@ -87,7 +87,7 @@
 - [x] D9:  P1. P2°4
 - [x] D10: Both
 - [x] D11: P1. P2°5
-- [ ] D12: 
+- [x] D12: Both°7
 - [x] D13: Both °6 
 - [ ] D14:  
 - [ ] D15:  
@@ -98,3 +98,4 @@
 °4 - got only the first part. J.Paulson helped again.</br>
 °5 - got the first. Couldn't think out the modulo logic (beforehand) to make it faster.</br>
 °6 - could not think of anything. I would not have been able to solve P2. joel used match-case from Python 3.10</br>
+°7 - after seeing the solution, some of my ideas we in the right direction, but could not combine them</br>
