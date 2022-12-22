@@ -94,6 +94,10 @@
 - [ ] D16:  
 - [ ] D17:  
 - [ ] D18:  
+- [ ] D19:  
+- [x] D20: Both°8 
+- [ ] D21:  
+- [ ] D22:  
 
 °1 - I got the examples with recursion, after that it did not work. J.Paulson with the smart solution. Joel with deque idea.</br>
 °2 - got the example. after that could not understand why I was getting my error. J.Paulson again with the nice solution. Joel with more verbose solution.</br>
@@ -102,3 +106,4 @@
 °5 - got the first. Couldn't think out the modulo logic (beforehand) to make it faster.</br>
 °6 - could not think of anything. I would not have been able to solve P2. joel used match-case from Python 3.10</br>
 °7 - after seeing the solution, some of my ideas we in the right direction, but could not combine them</br>
+°8 - partially understood the solution by J.Paulson</br>
