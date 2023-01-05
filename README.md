@@ -89,7 +89,7 @@
 - [x] D11: P1. P2°5
 - [x] D12: Both°7
 - [x] D13: Both°6 
-- [ ] D14:  
+- [x] D14: Both°9
 - [ ] D15:  
 - [ ] D16:  
 - [ ] D17:  
@@ -98,6 +98,9 @@
 - [x] D20: Both°8 
 - [ ] D21:  
 - [ ] D22:  
+- [ ] D23:  
+- [ ] D24:  
+- [ ] D25:  
 
 °1 - I got the examples with recursion, after that it did not work. J.Paulson with the smart solution. Joel with deque idea.</br>
 °2 - got the example. after that could not understand why I was getting my error. J.Paulson again with the nice solution. Joel with more verbose solution.</br>
@@ -107,3 +110,4 @@
 °6 - could not think of anything. I would not have been able to solve P2. joel used match-case from Python 3.10</br>
 °7 - after seeing the solution, some of my ideas we in the right direction, but could not combine them</br>
 °8 - partially understood the solution by J.Paulson</br>
+°9 - interesting task</br>
