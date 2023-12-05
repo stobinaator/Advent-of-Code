@@ -33,15 +33,9 @@ const buildDecks = (input) => {
 
 const transformDeck = (winningCards) => {
   for (const [index, cardMatches] of winningCards.entries()) {
-    if (cardMatches.length === 1) {
-      for (let i = 1; i < cardMatches[0] + 1; i++) {
-        winningCards[index + i].push(winningCards[index + i][0]);
-      }
-    } else {
-      for (const match of cardMatches) {
-        for (let j = 1; j < match + 1; j++) {
-          winningCards[index + j].push(winningCards[index + j][0]);
-        }
+    for (const match of cardMatches) {
+      for (let j = 1; j < match + 1; j++) {
+        winningCards[index + j].push(winningCards[index + j][0]);
       }
     }
   }
