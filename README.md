@@ -115,12 +115,12 @@
 °8 - partially understood the solution by J.Paulson</br>
 °9 - interesting task</br>
 
-# 2023's Advent of Code -> 4 ⭐️
+# 2023's Advent of Code -> 6 ⭐️
 
 - [x] D1: Both°
 - [x] D2: Both°
 - [ ] D3:
-- [ ] D4:
+- [x] D4: Both
 - [ ] D5:
 - [ ] D6:
 - [ ] D7:
