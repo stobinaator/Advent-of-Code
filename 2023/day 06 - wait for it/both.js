@@ -1,55 +1,31 @@
 const fs = require('fs');
 const text = fs.readFileSync('./input.txt').toString('utf-8');
+const regex = /\d+/gi;
 
-const regex = /\d+/g;
-const digits = text.match(regex);
+let [times, distances] = text.split('\n');
+times = times.split(':')[1].match(regex).map(Number);
+distances = distances.split(':')[1].match(regex).map(Number);
 
-const separateTimesAndDistances = (digits) => {
-  let times = [];
-  let distances = [];
+const f = (time, distance) => {
+  let winningDistances = [];
 
-  for (let i = 0; i < digits.length / 2; i++) {
-    times.push(digits[i]);
-  }
-  for (let i = digits.length / 2; i < digits.length; i++) {
-    distances.push(digits[i]);
-  }
-  return [times, distances];
-};
+  for (let j = 1; j < time; j++) {
+    const formula = (time - j) * j;
 
-const part1 = (times, distances) => {
-  let totalDistances = [];
-  for (const [index, time] of times.entries()) {
-    let winningDistances = [];
-
-    for (let j = 1; j < time; j++) {
-      const formula = (time - j) * j;
-
-      if (formula > distances[index]) {
-        winningDistances.push(formula);
-      }
-    }
-    totalDistances.push(winningDistances);
-  }
-
-  return totalDistances
-    .map((distance) => Object.keys(distance).length)
-    .reduce((acc, curr) => (acc *= curr), 1);
-};
-
-const part2 = (times, distances) => {
-  let totalWins = 0;
-  for (let j = 1; j < times; j++) {
-    if ((times - j) * j > distances) {
-      totalWins++;
+    if (formula > distance) {
+      winningDistances.push(formula);
     }
   }
-  return totalWins;
-};
-const [times, distances] = separateTimesAndDistances(digits);
-const resultP1 = part1(times, distances);
 
-const resultP2 = part2(times.join(''), distances.join(''));
+  return winningDistances.length;
+};
+
+let resultP1 = 1;
+for (let x of [...Array(times.length).keys()]) {
+  resultP1 *= f(times[x], distances[x]);
+}
+
+const resultP2 = f(times.join(''), distances.join(''));
 
 console.log(resultP1);
 console.log(resultP2);

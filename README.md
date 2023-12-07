@@ -115,14 +115,14 @@
 °8 - partially understood the solution by J.Paulson</br>
 °9 - interesting task</br>
 
-# 2023's Advent of Code -> 6 ⭐️
+# 2023's Advent of Code -> 8 ⭐️
 
-- [x] D1: Both°
-- [x] D2: Both°
+- [x] D1: Both°1
+- [x] D2: Both°2
 - [ ] D3:
 - [x] D4: Both
 - [ ] D5:
-- [ ] D6:
+- [x] D6: Both°
 - [ ] D7:
 - [ ] D8:
 - [ ] D9:
@@ -143,5 +143,6 @@
 - [ ] D24:
 - [ ] D25:
 
-° J. Paulson's solutions was cool. Managed to get the 1st + 2nd parts with regex.
-° J. Paulson's solutions were cool. In Part 2, I managed to replace the switch-case with Math.max() operation.
+°1 J. Paulson's solutions was cool. Managed to get the 1st + 2nd parts with regex.
+°2 J. Paulson's solutions were cool. In Part 2, I managed to replace the switch-case with Math.max() operation.
+°3 somehow for the 2nd part I was using the example numbers the whole time and not the input. smh :/
