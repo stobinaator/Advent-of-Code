@@ -143,6 +143,6 @@
 - [ ] D24:
 - [ ] D25:
 
-°1 J. Paulson's solutions was cool. Managed to get the 1st + 2nd parts with regex.
-°2 J. Paulson's solutions were cool. In Part 2, I managed to replace the switch-case with Math.max() operation.
-°3 somehow for the 2nd part I was using the example numbers the whole time and not the input. smh :/
+°1 J. Paulson's solutions was cool. Managed to get the 1st + 2nd parts with regex. </br>
+°2 J. Paulson's solutions were cool. In Part 2, I managed to replace the switch-case with Math.max() operation. </br>
+°3 somehow for the 2nd part I was using the example numbers the whole time and not the input. smh :/ </br>

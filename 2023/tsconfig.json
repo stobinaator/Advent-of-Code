@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["ES2021", "es6", "es2016"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "rootDir": "./",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/tsoa/*": ["tsoa/*"],
+      "@/public/*": ["public/*"],
+      "@/*": ["src/*"],
+      "tsoa": ["node_modules/tsoa"]
+    },
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
