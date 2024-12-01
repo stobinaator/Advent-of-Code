@@ -146,3 +146,31 @@
 °1 J. Paulson's solutions was cool. Managed to get the 1st + 2nd parts with regex. </br>
 °2 J. Paulson's solutions were cool. In Part 2, I managed to replace the switch-case with Math.max() operation. </br>
 °3 somehow for the 2nd part I was using the example numbers the whole time and not the input. smh :/ </br>
+
+# 2024's Advent of Code -> 
+
+- [x] D1: Both
+- [ ] D2: 
+- [ ] D3:
+- [ ] D4: 
+- [ ] D5:
+- [ ] D6: 
+- [ ] D7: 
+- [ ] D8:
+- [ ] D9:
+- [ ] D10:
+- [ ] D11:
+- [ ] D12:
+- [ ] D13:
+- [ ] D14:
+- [ ] D15:
+- [ ] D16:
+- [ ] D17:
+- [ ] D18:
+- [ ] D19:
+- [ ] D20:
+- [ ] D21:
+- [ ] D22:
+- [ ] D23:
+- [ ] D24:
+- [ ] D25:
