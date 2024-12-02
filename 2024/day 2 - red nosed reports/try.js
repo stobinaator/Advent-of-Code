@@ -10,8 +10,10 @@ function ascending(report) {
   // 1 3 6 7 9
   const correct = [];
   for (let i = 0; i < report.length - 1; i++) {
-    if (report[i] < report[i + 1]) {
-      const difference = Math.abs(report[i] - report[i + 1]);
+    const firstNum = report[i];
+    const secondNum = report[i + 1];
+    if (firstNum < secondNum) {
+      const difference = Math.abs(firstNum - secondNum);
       if (1 <= difference && difference <= 3) {
         correct.push(true);
       }
@@ -25,8 +27,10 @@ function descending(report) {
   // 7 6 4 2 1
   const correct = [];
   for (let i = 0; i < report.length - 1; i++) {
-    if (report[i] > report[i + 1]) {
-      const difference = Math.abs(report[i] - report[i + 1]);
+    const firstNum = report[i];
+    const secondNum = report[i + 1];
+    if (firstNum > secondNum) {
+      const difference = Math.abs(firstNum - secondNum);
       if (1 <= difference && difference <= 3) {
         correct.push(true);
       }
@@ -40,11 +44,8 @@ function isRepSafe(report) {
   const second = report[1];
   if (first === second) {
     return false;
-  } else if (first > second) {
-    return descending(report);
-  } else if (first < second) {
-    return ascending(report);
   }
+  return first > second ? descending(report) : ascending(report);
 }
 
 function countSafeReports(reports) {
