@@ -25,7 +25,7 @@ function countLeftRight(input) {
     }
     count += tempCount;
   }
-  //   console.log(count);
+
   return count;
 }
 
@@ -75,7 +75,7 @@ function countTopDown(input) {
     }
     count += tempCount;
   }
-  //   console.log(count);
+
   return count;
 }
 
@@ -92,14 +92,14 @@ function countBottomUp(input) {
       const third = input[j - 2][i];
       const fourth = input[j - 3][i];
       const word = `${first}${second}${third}${fourth}`;
-      //   console.log(word);
+
       if (word === "XMAS") {
         tempCount += 1;
       }
     }
     count += tempCount;
   }
-  //   console.log(count);
+
   return count;
 }
 
@@ -122,7 +122,7 @@ function countTopDownRightDiagonal(input) {
     }
     count += tempCount;
   }
-  //   console.log(count);
+
   return count;
 }
 
@@ -145,7 +145,7 @@ function countTopDownLeftDiagonal(input) {
     }
     count += tempCount;
   }
-  //   console.log(count);
+
   return count;
 }
 
@@ -157,7 +157,6 @@ function countBottomUpRigthDiagonal(input) {
   for (let i = rows - 1; i >= 3; i--) {
     let tempCount = 0;
     for (let j = 0; j < cols - 3; j++) {
-      //   console.log(i, j);
       const first = input[i][j];
       const second = input[i - 1][j + 1];
       const third = input[i - 2][j + 2];
@@ -169,7 +168,7 @@ function countBottomUpRigthDiagonal(input) {
     }
     count += tempCount;
   }
-  //   console.log(count);
+
   return count;
 }
 
@@ -181,7 +180,6 @@ function countBottomUpLeftDiagonal(input) {
   for (let i = rows - 1; i >= 3; i--) {
     let tempCount = 0;
     for (let j = cols - 1; j >= 3; j--) {
-      //   console.log(i, j);
       const first = input[i][j];
       const second = input[i - 1][j - 1];
       const third = input[i - 2][j - 2];
@@ -193,7 +191,7 @@ function countBottomUpLeftDiagonal(input) {
     }
     count += tempCount;
   }
-  //   console.log(count);
+
   return count;
 }
 
