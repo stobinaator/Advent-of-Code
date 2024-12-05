@@ -164,13 +164,13 @@
 °2 J. Paulson's solutions were cool. In Part 2, I managed to replace the switch-case with Math.max() operation. </br>
 °3 somehow for the 2nd part I was using the example numbers the whole time and not the input. smh :/ </br>
 
-# 2024's Advent of Code -> 5 ⭐️
+# 2024's Advent of Code -> 6 ⭐️
 
 - [x] D1: Both
 - [ ] D2: Part1
 - [ ] D3: Part1
 - [ ] D4: Part1 
-- [ ] D5:
+- [ ] D5: Part1
 - [ ] D6: 
 - [ ] D7: 
 - [ ] D8:
